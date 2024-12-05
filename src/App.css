@@ -52,6 +52,13 @@ html {
   padding-left: 3vh;
   padding-right: 3vh;
 }
+.onboarding-name-collection-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-self: flex-start;
+  margin-left: 0px;
+}
 .onboarding-error-div {
   color: red;
 }

@@ -12,6 +12,18 @@ function Onboarding() {
   const [room, setRoom] = useState("");
   const [user] = useAuthState(auth);
   const [errorMsg, setErrorMsg] = useState("");
+  const [hostels, setHostels] = useState([]);
+  useEffect(() => {
+    async function fetchHostels() {
+      const { data, error } = await supabase.from("Hostels").select("*");
+      if (error) {
+        console.error("Error fetching hostels:", error);
+      } else {
+        setHostels(data);
+      }
+    }
+    fetchHostels();
+  }, []);
 
   const screens = [
     // Onboarding screen 1
@@ -91,18 +103,11 @@ function Onboarding() {
         onChange={(e) => setHostel(e.target.value)}
       >
         <option value="">Select your hostel</option>
-        <option value="Kalapurackal">Kalapurackal Hostel</option>
-        <option value="Meenachil">Meenachil Hostel</option>
-        <option value="Nila A">Nila A Hostel</option>
-        <option value="Nila B">Nila B Hostel</option>
-        <option value="Maryland">Maryland Hostel</option>
-        <option value="Anamudi">Anamudi Hostel</option>
-        <option value="Manimala">Manimala Hostel</option>
-        <option value="Chittar">Chittar Hostel</option>
-        <option value="Sahyadri">Sahyadri Hostel</option>
-        <option value="Coop Tyre">Coop Tyre Arcade</option>
-        <option value="Agasthya">Agasthya Hostel</option>
-        <option value="Anna">Anna Residency</option>
+        {hostels.map((hostel) => (
+          <option key={hostel.id} value={hostel.hostelName}>
+            {hostel.hostelName}
+          </option>
+        ))}
       </select>
 
       {hostel && (
@@ -149,12 +154,23 @@ function Onboarding() {
       >
         Type in your room number
       </p>
-      <input
-        className="onboarding-name-collection-input"
-        type="number"
-        placeholder="Your room number"
-        onChange={(e) => setRoom(e.target.value)}
-      />
+      <div className="onboarding-name-collection-input-container">
+        <input
+          value={`${
+            hostels.find((h) => h.hostelName === hostel)?.abbreviation || ""
+          }-`}
+          readOnly
+          style={{ width: "50px", marginRight: "5px" }}
+          className="onboarding-name-collection-input"
+        />
+        <input
+          placeholder="Your room number"
+          onChange={(e) => setRoom(e.target.value)}
+          className="onboarding-name-collection-input"
+          type="number"
+          required
+        />
+      </div>
       {room && (
         <button
           style={{ position: "relative", top: "5vh" }}
@@ -179,7 +195,9 @@ function Onboarding() {
         name: userName,
         emailID: user.email,
         hostelName: hostel,
-        roomNo: room,
+        roomNo: `${
+          hostels.find((h) => h.hostelName === hostel)?.abbreviation || ""
+        }-${room}`,
       },
     ]);
     if (error) {
