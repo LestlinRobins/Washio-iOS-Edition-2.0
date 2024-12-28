@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase.jsx";
 import { useState, useEffect } from "react";
 import HomePage from "./components/HomePage.jsx";
+import SplashScreen from "./components/SplashScreen.jsx";
 
 function App() {
   const [initializing, setInitializing] = useState(true);
@@ -17,8 +18,8 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (initializing) {
-    return <div>Loading...</div>;
+  if (!initializing) {
+    return <SplashScreen />;
   }
   return (
     <>
