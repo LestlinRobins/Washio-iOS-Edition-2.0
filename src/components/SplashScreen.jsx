@@ -22,7 +22,7 @@ function SplashScreen() {
         <p style={{ padding: "0px", margin: "0.2vh" }}>from</p>
         <img
           className="splash-screen-company-logo"
-          src="../src/assets/void-company-logo.png"
+          src="https://lh3.googleusercontent.com/d/1HY_W-yAgk-fYN-Vwz2U4iNxmdKoz_FDe=w1000?authuser=1/view"
         ></img>
       </div>
     </div>
