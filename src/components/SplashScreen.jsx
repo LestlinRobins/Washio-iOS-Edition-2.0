@@ -19,7 +19,7 @@ function SplashScreen() {
         src="../src/assets/app-icon.png"
       ></img> */}
       <div className="splash-screen-company-logo-container">
-        <p style={{ padding: "0px", margin: "0.2vh" }}>blah</p>
+        <p style={{ padding: "0px", margin: "0.2vh", color: "gray" }}>from</p>
         <img
           className="splash-screen-company-logo"
           src="https://lh3.googleusercontent.com/d/1HY_W-yAgk-fYN-Vwz2U4iNxmdKoz_FDe=w1000?authuser=1/view"
