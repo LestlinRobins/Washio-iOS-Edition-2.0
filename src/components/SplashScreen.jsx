@@ -23,7 +23,7 @@ function SplashScreen() {
         <img
           className="splash-screen-company-logo"
           //   src="../src/assets/void-company-logo.png"
-          src="https://lh3.googleusercontent.com/d/1HY_W-yAgk-fYN-Vwz2U4iNxmdKoz_FDe=w1000?authuser=1/view"
+          src="https://lh3.googleusercontent.com/d/1ir0lsDxi3T8e2b9YrvZgpZ0b0NLwsA8m=w1000?authuser=1/view"
         ></img>
       </div>
     </div>
