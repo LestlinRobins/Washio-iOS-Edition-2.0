@@ -11,14 +11,22 @@ function App() {
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(() => {
-      setInitializing(false);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setInitializing(false);
+      } else {
+        const timer = setTimeout(() => {
+          setInitializing(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+      }
     });
 
     return () => unsubscribe();
   }, []);
 
-  if (!initializing) {
+  if (initializing) {
     return <SplashScreen />;
   }
   return (
