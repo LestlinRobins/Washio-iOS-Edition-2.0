@@ -10,12 +10,12 @@
   "start_url": "/?application=true",
   "icons": [
     {
-      "src": "./public/app-icon.png",
+      "src": "app-icon192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./public/app-icon.png",
+      "src": "app-icon512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
