@@ -13,7 +13,7 @@ function SplashScreen() {
   };
   return (
     <div className="splash-screen-container">
-      <Lottie speed={0.5} options={defaultOptions} height={150} width={150} />
+      <Lottie options={defaultOptions} height={150} width={150} />
       {/* <img
         className="splash-screen-app-logo"
         src="../src/assets/app-icon.png"

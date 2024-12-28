@@ -17,7 +17,7 @@ function App() {
       } else {
         const timer = setTimeout(() => {
           setInitializing(false);
-        }, 2000);
+        }, 1500);
 
         return () => clearTimeout(timer);
       }
