@@ -5,6 +5,7 @@ import { auth } from "./firebase.jsx";
 import { useState, useEffect } from "react";
 import HomePage from "./components/HomePage.jsx";
 import SplashScreen from "./components/SplashScreen.jsx";
+import Onboarding from "./components/Onboarding.jsx";
 
 function App() {
   const [initializing, setInitializing] = useState(true);
@@ -33,13 +34,10 @@ function App() {
     <>
       {user ? (
         <div>
-          <HomePage />
+          <Onboarding />
         </div>
       ) : (
-        <div>
-          Please sign in
-          <SignIn />
-        </div>
+        <SignIn />
       )}
     </>
   );

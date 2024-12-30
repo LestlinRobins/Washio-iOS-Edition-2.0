@@ -1,5 +1,4 @@
 #root {
-  margin: 0 auto;
   text-align: center;
   background-color: black;
 }
@@ -30,4 +29,43 @@ html {
   display: flex;
   flex-direction: column;
   align-self: center;
+}
+
+.sign-in-screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100vw;
+  background-color: black;
+}
+.onboarding-name-collection-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: black;
+  padding-left: 3vh;
+  padding-right: 3vh;
+}
+.onboarding-name-collection-input {
+  width: 80vw;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1.2em;
+  align-self: flex-start;
+}
+
+.onboarding-hostel-collection-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: black;
+  padding-left: 3vh;
+  padding-right: 3vh;
 }
