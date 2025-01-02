@@ -23,10 +23,6 @@ function Onboarding() {
   }
 
   useEffect(() => {
-    console.log(users);
-  }, [users]);
-
-  useEffect(() => {
     getUsers();
   }, []);
   const screens = [
