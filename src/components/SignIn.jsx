@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { auth } from "../firebase.jsx";
-import { supabase } from "../supabase.jsx";
+import { supabase } from "../supabase";
 
 function SignIn() {
   function signInWithGoogle() {
@@ -12,17 +12,6 @@ function SignIn() {
     });
     auth.signInWithPopup(provider);
   }
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  async function getUsers() {
-    const { usersData } = await supabase.from("users").select();
-    setUsers(usersData);
-    console.log(users);
-  }
-
   return (
     <div className="sign-in-screen-container">
       <h1
