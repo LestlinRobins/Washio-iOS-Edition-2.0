@@ -14,10 +14,6 @@ function SplashScreen() {
   return (
     <div className="splash-screen-container">
       <Lottie options={defaultOptions} height={150} width={150} />
-      {/* <img
-        className="splash-screen-app-logo"
-        src="../src/assets/app-icon.png"
-      ></img> */}
       <div className="splash-screen-company-logo-container">
         <p style={{ padding: "0px", margin: "0.2vh", color: "gray" }}>from</p>
         <img
