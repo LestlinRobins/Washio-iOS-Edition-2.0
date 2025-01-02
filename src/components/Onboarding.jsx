@@ -60,7 +60,7 @@ function Onboarding() {
       <SignOut />
 
       <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}>
-        No socks were harmed in the making of this app
+        No washing machines were harmed in the making of this app
       </p>
     </div>,
 
@@ -167,16 +167,14 @@ function Onboarding() {
     <HomePage />,
   ];
   async function handleSubmit() {
-    const { error } = await supabase
-      .from("users")
-      .insert([
-        {
-          name: userName,
-          emailID: user.email,
-          hostelName: hostel,
-          roomNo: room,
-        },
-      ]);
+    const { error } = await supabase.from("users").insert([
+      {
+        name: userName,
+        emailID: user.email,
+        hostelName: hostel,
+        roomNo: room,
+      },
+    ]);
     if (error) {
       console.error("Error inserting data:", error);
     } else {
