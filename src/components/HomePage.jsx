@@ -16,7 +16,8 @@ function HomePage() {
     const { data: userData, error } = await supabase
       .from("users")
       .select()
-      .eq("emailID", email);
+      .eq("emailID", email)
+      .single();
     if (error) {
       console.error("Error fetching users:", error);
     } else {
