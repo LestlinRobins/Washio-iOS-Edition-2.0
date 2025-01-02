@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import SignOut from "./SignOut";
 import { supabase } from "../supabase";
+import SplashScreenStatic from "./SplashScreenStatic";
 
 function HomePage() {
   const [currentUserData, setCurrentUserData] = useState({});
-  const { uid, photoURL, displayName, email } = auth.currentUser;
-  function formatDisplayName(displayName) {
-    const nameParts = displayName.split(" -")[0].split(" ");
-    return nameParts
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-      .join(" ");
-  }
+  const { photoURL, email } = auth.currentUser;
+  const [isLoading, setIsLoading] = useState(true);
+
   async function getUsers() {
     const { data: userData, error } = await supabase
       .from("users")
@@ -19,25 +16,25 @@ function HomePage() {
       .eq("emailID", email)
       .single();
     if (error) {
-      console.error("Error fetching users:", error);
     } else {
       setCurrentUserData(userData);
     }
+    setIsLoading(false);
   }
-
-  useEffect(() => {
-    console.log(currentUserData.emailID);
-  }, [currentUserData]);
 
   useEffect(() => {
     getUsers();
   }, []);
+
+  if (isLoading) {
+    return <SplashScreenStatic />;
+  }
   return (
     <div>
       HomePage
       <p>{currentUserData.emailID}</p>
       <img alt="user photho" src={photoURL}></img>
-      <h1>{formatDisplayName(displayName)}</h1>
+      <h1>{currentUserData.name}</h1>
       <SignOut />
     </div>
   );

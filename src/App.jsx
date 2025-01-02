@@ -9,34 +9,32 @@ import Onboarding from "./components/Onboarding.jsx";
 import HomePage from "./components/HomePage.jsx";
 
 function App() {
-  const [initializing, setInitializing] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [user] = useAuthState(auth);
   const [users, setUsers] = useState([]);
 
-  async function getUsers() {
-    const { data: usersData, error } = await supabase.from("users").select();
-    if (error) {
-      console.error("Error fetching users:", error);
-    } else {
-      setUsers(usersData);
-    }
-  }
-  function isUserPresent() {
-    if (user && users.length > 0) {
-      return users.some((u) => u.emailID === user.email);
-    }
-    return false;
-  }
   useEffect(() => {
-    getUsers();
-  }, []);
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setInitializing(false);
+        try {
+          const { data: userData, error } = await supabase
+            .from("users")
+            .select()
+            .eq("emailID", user.email)
+            .single();
+          if (error) {
+            // console.error("Error fetching user:", error);
+          } else {
+            setUsers([userData]);
+          }
+        } catch (error) {
+          // console.error("Error fetching user:", error);
+        } finally {
+          setIsLoading(false);
+        }
       } else {
         const timer = setTimeout(() => {
-          setInitializing(false);
+          setIsLoading(false);
         }, 1500);
 
         return () => clearTimeout(timer);
@@ -46,9 +44,14 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (initializing) {
+  if (isLoading) {
     return <SplashScreen />;
   }
+
+  function isUserPresent() {
+    return user && users.length > 0;
+  }
+
   return (
     <>{user ? isUserPresent() ? <HomePage /> : <Onboarding /> : <SignIn />}</>
   );
