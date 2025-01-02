@@ -2,14 +2,21 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { auth } from "../firebase.jsx";
+import SplashScreenStatic from "./SplashScreenStatic.jsx";
 
 function SignIn() {
+  const [loading, setLoading] = useState(false);
+
   function signInWithGoogle() {
+    setLoading(true);
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({
       hd: "iiitkottayam.ac.in",
     });
-    auth.signInWithPopup(provider);
+    auth.signInWithPopup(provider).finally(() => setLoading(false));
+  }
+  if (loading) {
+    return <SplashScreenStatic />;
   }
   return (
     <div className="sign-in-screen-container">
