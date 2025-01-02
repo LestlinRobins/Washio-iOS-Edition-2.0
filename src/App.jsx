@@ -28,10 +28,6 @@ function App() {
     return false;
   }
   useEffect(() => {
-    console.log(users);
-  }, [users]);
-
-  useEffect(() => {
     getUsers();
   }, []);
   useEffect(() => {
