@@ -1,6 +1,7 @@
 #root {
   text-align: center;
   background-color: black;
+  width: 100vw;
 }
 body,
 html {
@@ -68,4 +69,39 @@ html {
   background-color: black;
   padding-left: 3vh;
   padding-right: 3vh;
+}
+
+.topBarHomePage {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 1vh;
+  left: 0px;
+  width: 100%;
+}
+
+.appNameHomePage {
+  align-self: flex-start;
+  margin-left: 5vw;
+}
+
+.userDetailsHomePage {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5vw;
+}
+.userPlanHomePage {
+  border: 1px solid white;
+  padding: 1vh;
+  border-radius: 10px;
+  margin-right: 1vh;
+}
+
+.userPhotoHomePage {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 100px;
 }

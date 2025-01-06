@@ -7,7 +7,6 @@ import { auth } from "../firebase.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Onboarding() {
-  const [users, setUsers] = useState([]);
   const [userName, setUserName] = useState("");
   const [hostel, setHostel] = useState("");
   const [room, setRoom] = useState("");
