@@ -111,3 +111,19 @@ html {
   border-radius: 100px;
   align-self: center;
 }
+
+.bottomBarHomePage {
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  padding: 2vh;
+  align-self: center;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid red;
+  margin-bottom: 2vh;
+  border-radius: 10px;
+}

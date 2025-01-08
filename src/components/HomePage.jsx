@@ -72,14 +72,24 @@ function HomePage() {
           ></img>
         </div>
       </div>
-      Select your Floor
-      <p>{currentUserData.hostelName}</p>
-      {Array.from({ length: currentHostelData.noOfFloors }, (_, i) => (
-        <div key={i}>{i}</div>
-      ))}
-      <SignOut />
+      {showSettings ? (
+        <SettingsPage />
+      ) : (
+        <div>
+          Select your Floor
+          <p>{currentUserData.hostelName}</p>
+          {Array.from({ length: currentHostelData.noOfFloors }, (_, i) => (
+            <div key={i}>{i}</div>
+          ))}
+          <SignOut />
+        </div>
+      )}
+
       <div className="bottomBarHomePage">
-        <div className="bottomBarIconHomePage">
+        <div
+          onClick={() => setShowSettings(false)}
+          className="bottomBarIconHomePage"
+        >
           <Home />
         </div>
         <div
@@ -89,7 +99,6 @@ function HomePage() {
           <Settings />
         </div>
       </div>
-      <div></div>
     </div>
   );
 }
