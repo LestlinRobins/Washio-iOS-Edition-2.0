@@ -11,6 +11,7 @@ function HomePage() {
   const [currentHostelData, setCurrentHostelData] = useState({});
   const { photoURL, email } = auth.currentUser;
   const [isLoading, setIsLoading] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
 
   async function getUsers() {
     const { data: userData, error } = await supabase
@@ -57,6 +58,7 @@ function HomePage() {
   if (isLoading) {
     return <SplashScreenStatic />;
   }
+
   return (
     <div>
       <div className="topBarHomePage">
@@ -80,10 +82,14 @@ function HomePage() {
         <div className="bottomBarIconHomePage">
           <Home />
         </div>
-        <div className="bottomBarIconHomePage">
+        <div
+          onClick={() => setShowSettings(true)}
+          className="bottomBarIconHomePage"
+        >
           <Settings />
         </div>
       </div>
+      <div></div>
     </div>
   );
 }
