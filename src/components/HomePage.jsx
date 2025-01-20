@@ -78,10 +78,23 @@ function HomePage() {
         <div>
           Select your Floor
           <p>{currentUserData.hostelName}</p>
-          {Array.from({ length: currentHostelData.noOfFloors }, (_, i) => (
-            <div key={i}>{i}</div>
-          ))}
-          <SignOut />
+          <div className="floorBoxContainer">
+            {Array.from({ length: currentHostelData.noOfFloors }, (_, i) => (
+              <div className="singleFloorBox" key={i}>
+                {i}
+              </div>
+            ))
+              .reduce((acc, curr, index) => {
+                if (index % 3 === 0) acc.push([]);
+                acc[acc.length - 1].push(curr);
+                return acc;
+              }, [])
+              .map((row, rowIndex) => (
+                <div className="floorRow" key={rowIndex}>
+                  {row}
+                </div>
+              ))}
+          </div>
         </div>
       )}
 
