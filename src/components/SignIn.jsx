@@ -8,6 +8,7 @@ function SignIn() {
   const [loading, setLoading] = useState(false);
 
   function signInWithGoogle() {
+    navigator.vibrate(50);
     setLoading(true);
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({

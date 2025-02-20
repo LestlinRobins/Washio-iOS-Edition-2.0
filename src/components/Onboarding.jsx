@@ -13,18 +13,6 @@ function Onboarding() {
   const [user] = useAuthState(auth);
   const [errorMsg, setErrorMsg] = useState("");
 
-  async function getUsers() {
-    const { data: usersData, error } = await supabase.from("users").select();
-    if (error) {
-      console.error("Error fetching users:", error);
-    } else {
-      setUsers(usersData);
-    }
-  }
-
-  useEffect(() => {
-    getUsers();
-  }, []);
   const screens = [
     // Onboarding screen 1
     <div className="onboarding-name-collection-screen">
@@ -53,11 +41,8 @@ function Onboarding() {
         <button
           style={{ position: "relative", top: "5vh" }}
           onClick={() => {
-            if (userName.trim()) {
-              setCurrentScreen(1);
-            } else {
-              setErrorMsg("Please enter your name to proceed");
-            }
+            navigator.vibrate(50);
+            setCurrentScreen(1);
           }}
         >
           Next
@@ -74,7 +59,10 @@ function Onboarding() {
     <div className="onboarding-hostel-collection-screen">
       <button
         style={{ position: "fixed", top: "2vh", left: "4vw" }}
-        onClick={() => setCurrentScreen(0)}
+        onClick={() => {
+          navigator.vibrate(50);
+          setCurrentScreen(0);
+        }}
       >
         Back
       </button>
@@ -120,7 +108,10 @@ function Onboarding() {
       {hostel && (
         <button
           style={{ position: "relative", top: "5vh" }}
-          onClick={() => setCurrentScreen(2)}
+          onClick={() => {
+            navigator.vibrate(50);
+            setCurrentScreen(2);
+          }}
         >
           Next
         </button>
@@ -132,7 +123,10 @@ function Onboarding() {
     <div className="onboarding-hostel-collection-screen">
       <button
         style={{ position: "fixed", top: "2vh", left: "4vw" }}
-        onClick={() => setCurrentScreen(1)}
+        onClick={() => {
+          navigator.vibrate(50);
+          setCurrentScreen(1);
+        }}
       >
         Back
       </button>
@@ -165,6 +159,7 @@ function Onboarding() {
         <button
           style={{ position: "relative", top: "5vh" }}
           onClick={() => {
+            navigator.vibrate(50);
             handleSubmit();
             setCurrentScreen(3);
           }}
@@ -191,6 +186,10 @@ function Onboarding() {
       console.error("Error inserting data:", error);
     } else {
       console.log("Data inserted successfully");
+      // Add a delay before navigating to the next screen
+      setTimeout(() => {
+        setCurrentScreen(3); // Navigate to the next screen after successful insertion
+      }, 2000); // 2-second delay
       setCurrentScreen(3); // Navigate to the next screen after successful insertion
     }
   }

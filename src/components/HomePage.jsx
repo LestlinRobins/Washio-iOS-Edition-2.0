@@ -69,6 +69,7 @@ function HomePage() {
             className="userPhotoHomePage"
             alt="user photo"
             src={photoURL}
+            onClick={() => setShowSettings(true)}
           ></img>
         </div>
       </div>
