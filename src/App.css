@@ -2,6 +2,7 @@
   text-align: center;
   background-color: black;
   width: 100vw;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 body,
 html {
@@ -50,6 +51,9 @@ html {
   background-color: black;
   padding-left: 3vh;
   padding-right: 3vh;
+}
+.onboarding-error-div {
+  color: red;
 }
 .onboarding-name-collection-input {
   width: 80vw;

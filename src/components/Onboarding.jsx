@@ -11,6 +11,7 @@ function Onboarding() {
   const [hostel, setHostel] = useState("");
   const [room, setRoom] = useState("");
   const [user] = useAuthState(auth);
+  const [errorMsg, setErrorMsg] = useState("");
 
   async function getUsers() {
     const { data: usersData, error } = await supabase.from("users").select();
@@ -41,22 +42,32 @@ function Onboarding() {
         Let's start with your name
       </p>
       <input
+        required
         className="onboarding-name-collection-input"
         type="text"
         placeholder="Your name"
         onChange={(e) => setUserName(e.target.value)}
       />
-      <button
-        style={{ position: "relative", top: "5vh" }}
-        onClick={() => setCurrentScreen(1)}
-      >
-        Next
-      </button>
-      <SignOut />
+      <div className="onboarding-error-div">{errorMsg}</div>
+      {userName.trim() && (
+        <button
+          style={{ position: "relative", top: "5vh" }}
+          onClick={() => {
+            if (userName.trim()) {
+              setCurrentScreen(1);
+            } else {
+              setErrorMsg("Please enter your name to proceed");
+            }
+          }}
+        >
+          Next
+        </button>
+      )}
+      <div style={{ position: "fixed", top: "2vh", left: "4vw" }}>
+        <SignOut />
+      </div>
 
-      <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}>
-        No washing machines were harmed in the making of this app
-      </p>
+      <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}></p>
     </div>,
 
     // Onboarding screen 2
@@ -67,7 +78,6 @@ function Onboarding() {
       >
         Back
       </button>
-
       <h1
         style={{
           fontSize: "40px",
@@ -107,22 +117,21 @@ function Onboarding() {
         <option value="Anna">Anna Residency</option>
       </select>
 
-      <button
-        style={{ position: "relative", top: "5vh" }}
-        onClick={() => setCurrentScreen(2)}
-      >
-        Next
-      </button>
-      <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}>
-        No socks were harmed in the making of this app
-      </p>
+      {hostel && (
+        <button
+          style={{ position: "relative", top: "5vh" }}
+          onClick={() => setCurrentScreen(2)}
+        >
+          Next
+        </button>
+      )}
+      <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}></p>
     </div>,
 
     // Onboarding screen 3
-    <div>
-      Screen 3
+    <div className="onboarding-hostel-collection-screen">
       <button
-        style={{ position: "relative", top: "5vh" }}
+        style={{ position: "fixed", top: "2vh", left: "4vw" }}
         onClick={() => setCurrentScreen(1)}
       >
         Back
@@ -137,7 +146,13 @@ function Onboarding() {
         Welcome to <br />
         Wash.io
       </h1>
-      <p style={{ fontSize: "20px", color: "gray", alignSelf: "flex-start" }}>
+      <p
+        style={{
+          fontSize: "20px",
+          color: "gray",
+          alignSelf: "flex-start",
+        }}
+      >
         Type in your room number
       </p>
       <input
@@ -146,15 +161,17 @@ function Onboarding() {
         placeholder="Your room number"
         onChange={(e) => setRoom(e.target.value)}
       />
-      <button
-        style={{ position: "relative", top: "5vh" }}
-        onClick={() => {
-          handleSubmit();
-          setCurrentScreen(3);
-        }}
-      >
-        Complete
-      </button>
+      {room && (
+        <button
+          style={{ position: "relative", top: "5vh" }}
+          onClick={() => {
+            handleSubmit();
+            setCurrentScreen(3);
+          }}
+        >
+          Complete
+        </button>
+      )}
       <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}>
         No socks were harmed in the making of this app
       </p>
