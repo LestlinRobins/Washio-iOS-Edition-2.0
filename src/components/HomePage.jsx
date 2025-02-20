@@ -69,7 +69,10 @@ function HomePage() {
             className="userPhotoHomePage"
             alt="user photo"
             src={photoURL}
-            onClick={() => setShowSettings(true)}
+            onClick={() => {
+              navigator.vibrate(50);
+              setShowSettings(true);
+            }}
           ></img>
         </div>
       </div>
@@ -91,7 +94,15 @@ function HomePage() {
                 return acc;
               }, [])
               .map((row, rowIndex) => (
-                <div className="floorRow" key={rowIndex}>
+                <div
+                  className="floorRow"
+                  key={rowIndex}
+                  onClick={() => {
+                    {
+                      navigator.vibrate(50);
+                    }
+                  }}
+                >
                   {row}
                 </div>
               ))}
@@ -101,13 +112,19 @@ function HomePage() {
 
       <div className="bottomBarHomePage">
         <div
-          onClick={() => setShowSettings(false)}
+          onClick={() => {
+            navigator.vibrate(50);
+            setShowSettings(false);
+          }}
           className="bottomBarIconHomePage"
         >
           <Home />
         </div>
         <div
-          onClick={() => setShowSettings(true)}
+          onClick={() => {
+            navigator.vibrate(50);
+            setShowSettings(true);
+          }}
           className="bottomBarIconHomePage"
         >
           <Settings />
