@@ -4,7 +4,8 @@ import SignOut from "./SignOut";
 import { supabase } from "../supabase";
 import SplashScreenStatic from "./SplashScreenStatic";
 import SettingsPage from "./SettingsPage";
-import { Home, Settings } from "react-feather";
+import BookingPage from "./BookingPage";
+import { Home, Settings, ArrowLeft } from "react-feather";
 
 function HomePage() {
   const [currentUserData, setCurrentUserData] = useState({});
@@ -12,6 +13,7 @@ function HomePage() {
   const { photoURL, email } = auth.currentUser;
   const [isLoading, setIsLoading] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
+  const [selectedFloor, setSelectedFloor] = useState(null);
 
   async function getUsers() {
     const { data: userData, error } = await supabase
@@ -62,7 +64,20 @@ function HomePage() {
   return (
     <div>
       <div className="topBarHomePage">
-        <p className="appNameHomePage">Wash.io</p>
+        <div className="topBarLeftHomePage">
+          {selectedFloor !== null && (
+            <button
+              className="backButton"
+              onClick={() => {
+                navigator.vibrate(50);
+                setSelectedFloor(null);
+              }}
+            >
+              <ArrowLeft />
+            </button>
+          )}
+          <p className="appNameHomePage">Wash.io</p>
+        </div>
         <div className="userDetailsHomePage">
           <p className="userPlanHomePage">{currentUserData.plan}</p>
           <img
@@ -72,19 +87,35 @@ function HomePage() {
             onClick={() => {
               navigator.vibrate(50);
               setShowSettings(true);
+              setSelectedFloor(null);
             }}
           ></img>
         </div>
       </div>
       {showSettings ? (
         <SettingsPage />
+      ) : selectedFloor !== null ? (
+        <div>
+          <BookingPage
+            floorNo={selectedFloor}
+            hostelData={currentHostelData}
+            userData={currentUserData}
+          />
+        </div>
       ) : (
         <div>
           Select your Floor
           <p>{currentUserData.hostelName}</p>
           <div className="floorBoxContainer">
             {Array.from({ length: currentHostelData.noOfFloors }, (_, i) => (
-              <div className="singleFloorBox" key={i}>
+              <div
+                className="singleFloorBox"
+                key={i}
+                onClick={() => {
+                  navigator.vibrate(50);
+                  setSelectedFloor(i);
+                }}
+              >
                 {i}
               </div>
             ))
@@ -94,15 +125,7 @@ function HomePage() {
                 return acc;
               }, [])
               .map((row, rowIndex) => (
-                <div
-                  className="floorRow"
-                  key={rowIndex}
-                  onClick={() => {
-                    {
-                      navigator.vibrate(50);
-                    }
-                  }}
-                >
+                <div className="floorRow" key={rowIndex}>
                   {row}
                 </div>
               ))}
@@ -115,6 +138,7 @@ function HomePage() {
           onClick={() => {
             navigator.vibrate(50);
             setShowSettings(false);
+            setSelectedFloor(null);
           }}
           className="bottomBarIconHomePage"
         >
@@ -124,6 +148,7 @@ function HomePage() {
           onClick={() => {
             navigator.vibrate(50);
             setShowSettings(true);
+            setSelectedFloor(null);
           }}
           className="bottomBarIconHomePage"
         >
