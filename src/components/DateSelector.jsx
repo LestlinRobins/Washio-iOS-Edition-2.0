@@ -146,7 +146,7 @@ const DateSelector = ({
       backgroundColor: isSelected
         ? "rgb(0 ,227, 5)"
         : isTodayDate
-        ? "#141414"
+        ? "rgb(10, 53, 11)"
         : "#121212",
       color: isSelected ? "white" : "white",
       transition: "background-color 0.2s ease",

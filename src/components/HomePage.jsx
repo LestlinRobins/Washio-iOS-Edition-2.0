@@ -63,35 +63,41 @@ function HomePage() {
 
   return (
     <div>
-      <div className="topBarHomePage">
-        <div className="topBarLeftHomePage">
-          {selectedFloor !== null && (
-            <button
-              className="backButton"
-              onClick={() => {
-                navigator.vibrate(50);
-                setSelectedFloor(null);
-              }}
-            >
-              <ArrowLeft />
-            </button>
-          )}
-          <p className="appNameHomePage">Wash.io</p>
-        </div>
-        <div className="userDetailsHomePage">
-          <p className="userPlanHomePage">{currentUserData.plan}</p>
-          <img
-            className="userPhotoHomePage"
-            alt="user photo"
-            src={photoURL}
+      {selectedFloor !== null && (
+        <div className="topBarBookingPage">
+          <div className="appBGBooking"></div>
+          <button
+            className="backButton"
             onClick={() => {
               navigator.vibrate(50);
-              setShowSettings(true);
               setSelectedFloor(null);
             }}
-          ></img>
+          >
+            <ArrowLeft />
+          </button>
+          <p>Floor {selectedFloor} Slot Booking</p>
         </div>
-      </div>
+      )}
+      {selectedFloor === null && (
+        <div className="topBarHomePage">
+          <div className="topBarLeftHomePage">
+            <p className="appNameHomePage">Wash.io</p>
+          </div>
+          <div className="userDetailsHomePage">
+            <p className="userPlanHomePage">{currentUserData.plan}</p>
+            <img
+              className="userPhotoHomePage"
+              alt="user photo"
+              src={photoURL}
+              onClick={() => {
+                navigator.vibrate(50);
+                setShowSettings(true);
+                setSelectedFloor(null);
+              }}
+            ></img>
+          </div>
+        </div>
+      )}
       {showSettings ? (
         <SettingsPage />
       ) : selectedFloor !== null ? (
@@ -143,6 +149,21 @@ function HomePage() {
           className="bottomBarIconHomePage"
         >
           <Home />
+          {!showSettings && (
+            <p
+              style={{
+                padding: "0px",
+                margin: "0px",
+                fontWeight: "800",
+                marginTop: "-10px",
+                alignSelf: "center",
+                fontSize: "20px",
+                marginBottom: "-10px",
+              }}
+            >
+              —
+            </p>
+          )}
         </div>
         <div
           onClick={() => {
@@ -153,6 +174,21 @@ function HomePage() {
           className="bottomBarIconHomePage"
         >
           <Settings />
+          {showSettings && (
+            <p
+              style={{
+                padding: "0px",
+                margin: "0px",
+                fontWeight: "800",
+                marginTop: "-10px",
+                alignSelf: "center",
+                fontSize: "20px",
+                marginBottom: "-10px",
+              }}
+            >
+              —
+            </p>
+          )}
         </div>
       </div>
     </div>

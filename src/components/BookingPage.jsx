@@ -68,7 +68,6 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
           setSelectedDate(date);
         }}
       />
-      <h2>Floor {floorNo}</h2>
       <p>Slots for {selectedDate.toLocaleDateString()}</p>
       {isLoading && (
         <div>
