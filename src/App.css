@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 #root {
   text-align: center;
   background-color: black;
   width: 100vw;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 body,
 html {
@@ -175,6 +176,7 @@ html {
   color: white;
   margin-top: 12vh;
   margin-bottom: 15vh;
+  height: 100vh;
 }
 
 .bookingContainer h2 {
@@ -199,13 +201,18 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2vh;
   border-radius: 8px;
-  border: 1px solid #444;
-  background-color: rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
+  width: 105%;
+  align-self: center;
 }
-
+.slotDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 22%;
+}
 .slot.available {
   border: 1px solid #4caf50;
 }
@@ -221,16 +228,26 @@ html {
 }
 
 .slotTime {
-  font-weight: bold;
-  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .slotStatus {
-  padding: 0.5vh 1vh;
   border-radius: 4px;
   font-size: 0.8rem;
 }
-
+.slotRoomNo {
+  background-color: rgb(49, 49, 49);
+  border-radius: 5px;
+  width: 4rem;
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+.slotUser {
+  display: flex;
+  flex-direction: column;
+}
 .available .slotStatus {
   background-color: rgba(76, 175, 80, 0.2);
   color: #4caf50;

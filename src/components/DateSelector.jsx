@@ -144,7 +144,7 @@ const DateSelector = ({
       borderRadius: "8px",
       cursor: "pointer",
       backgroundColor: isSelected
-        ? "#006102"
+        ? "rgb(0 ,227, 5)"
         : isTodayDate
         ? "#141414"
         : "#121212",
