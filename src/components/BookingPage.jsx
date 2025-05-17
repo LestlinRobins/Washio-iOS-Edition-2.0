@@ -47,7 +47,13 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
 
     fetchSlots();
   }, [selectedDate, hostelData.hostelName, floorNo]);
-
+  const isSameDay = (date1, date2) => {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
+  };
   const findStatus = (slot) => {
     const startTime = new Date(slot.startTime);
     const endTime = new Date(slot.endTime);
@@ -68,7 +74,15 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
           setSelectedDate(date);
         }}
       />
-      <p>Slots for {selectedDate.toLocaleDateString()}</p>
+      <p>
+        Slots for{" "}
+        {selectedDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}
+        .
+      </p>
       {isLoading && (
         <div>
           <Lottie
@@ -122,17 +136,25 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
                     })}
                   </span>
                 </div>
-                <span className="slotStatus">
-                  {findStatus(slot) === 0 && (
+                {isSameDay(selectedDate, new Date()) ? (
+                  <span className="slotStatus">
+                    {findStatus(slot) === 0 && (
+                      <p style={{ color: "gray", fontSize: "24px" }}>●</p>
+                    )}
+                    {findStatus(slot) === 1 && (
+                      <p style={{ color: "rgb(0, 227, 5)", fontSize: "24px" }}>
+                        ●
+                      </p>
+                    )}
+                    {findStatus(slot) === 2 && (
+                      <p style={{ color: "orange", fontSize: "24px" }}>●</p>
+                    )}
+                  </span>
+                ) : (
+                  <span className="slotStatus">
                     <p style={{ color: "gray", fontSize: "24px" }}>●</p>
-                  )}
-                  {findStatus(slot) === 1 && (
-                    <p style={{ color: "green", fontSize: "24px" }}>●</p>
-                  )}
-                  {findStatus(slot) === 2 && (
-                    <p style={{ color: "orange", fontSize: "24px" }}>●</p>
-                  )}
-                </span>
+                  </span>
+                )}
               </div>
             </div>
           ))}
