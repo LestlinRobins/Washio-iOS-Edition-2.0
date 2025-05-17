@@ -10,16 +10,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
+    "@mui/x-date-pickers": "^8.3.1",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.47.10",
+    "dayjs": "^1.11.13",
     "firebase": "^11.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
     "react-firebase-hooks": "^5.1.1",
-    "react-lottie": "^1.2.10"
+    "react-lottie": "^1.2.10",
+    "react-router": "^7.6.0",
+    "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

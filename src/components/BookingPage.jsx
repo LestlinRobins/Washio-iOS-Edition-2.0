@@ -3,12 +3,14 @@ import { supabase } from "../supabase";
 import DateSelector from "./DateSelector";
 import Lottie from "react-lottie";
 import animationData from "../assets/loading.json";
+import Booking from "./Booking";
+import { Book } from "react-feather";
 
 const BookingPage = ({ floorNo, hostelData, userData }) => {
   const [slots, setSlots] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSlot, setSelectedSlot] = useState(null);
-
+  const [isBooking, setIsBooking] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableDates, setAvailableDates] = useState([]);
 
@@ -158,6 +160,28 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+      {!isLoading && !isBooking && (
+        <button onClick={() => setIsBooking(true)}>Book a Slot</button>
+      )}
+      {!isLoading && isBooking && (
+        <div className="slotBookingContainer">
+          <button
+            className="backButtonBooking"
+            onClick={() => {
+              setIsBooking(false);
+            }}
+          >
+            Back
+          </button>
+          <div>
+            <Booking
+              floorNo={floorNo}
+              selectedDate={selectedDate}
+              userData={userData}
+            />
+          </div>
         </div>
       )}
     </div>
