@@ -2,28 +2,11 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import SignOut from "./SignOut";
 import { supabase } from "../supabase";
+import { Link } from "react-router-dom";
+import { Home, Settings } from "react-feather";
 
-function SettingsPage() {
-  const [currentUserData, setCurrentUserData] = useState({});
+function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
-
-  async function getUsers() {
-    const { data: userData, error } = await supabase
-      .from("users")
-      .select()
-      .eq("emailID", email)
-      .single();
-    if (error) {
-    } else {
-      setCurrentUserData(userData);
-    }
-  }
-  useEffect(() => {
-    async function fetchData() {
-      await getUsers();
-    }
-    fetchData();
-  }, []);
 
   return (
     <div>
@@ -33,6 +16,42 @@ function SettingsPage() {
       <p>{currentUserData.hostelName}</p>
       <p>{currentUserData.roomNo}</p>
       <SignOut />
+      <div className="bottomBarHomePage">
+        <Link to="/">
+          <div
+            onClick={() => {
+              navigator.vibrate(50);
+            }}
+            className="bottomBarIconHomePage"
+          >
+            <Home />
+          </div>
+        </Link>
+        <Link to="/SettingsPage">
+          <div
+            onClick={() => {
+              navigator.vibrate(50);
+            }}
+            className="bottomBarIconHomePage"
+          >
+            <Settings />
+
+            <p
+              style={{
+                padding: "0px",
+                margin: "0px",
+                fontWeight: "800",
+                marginTop: "-10px",
+                alignSelf: "center",
+                fontSize: "20px",
+                marginBottom: "-10px",
+              }}
+            >
+              —
+            </p>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }

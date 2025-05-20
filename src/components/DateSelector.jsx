@@ -83,6 +83,8 @@ const DateSelector = ({
     fontSize: "16px",
     fontWeight: "bold",
     margin: 0,
+    color: "white",
+    zIndex: 1,
   };
 
   const scrollContainerWrapperStyle = {

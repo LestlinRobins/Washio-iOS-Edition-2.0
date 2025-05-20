@@ -6,60 +6,12 @@ import SplashScreenStatic from "./SplashScreenStatic";
 import SettingsPage from "./SettingsPage";
 import BookingPage from "./BookingPage";
 import { Home, Settings, ArrowLeft } from "react-feather";
+import { Link, useNavigate } from "react-router-dom";
 
-function HomePage() {
-  const [currentUserData, setCurrentUserData] = useState({});
-  const [currentHostelData, setCurrentHostelData] = useState({});
-  const { photoURL, email } = auth.currentUser;
-  const [isLoading, setIsLoading] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
+function HomePage({ currentHostelData, currentUserData }) {
   const [selectedFloor, setSelectedFloor] = useState(null);
-
-  async function getUsers() {
-    const { data: userData, error } = await supabase
-      .from("users")
-      .select()
-      .eq("emailID", email)
-      .single();
-    if (error) {
-    } else {
-      setCurrentUserData(userData);
-    }
-  }
-
-  async function getHostelData() {
-    const { data: hostelData, error } = await supabase
-      .from("Hostels")
-      .select()
-      .eq("hostelName", currentUserData.hostelName)
-      .single();
-    if (error) {
-    } else {
-      setCurrentHostelData(hostelData);
-    }
-  }
-
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      await getUsers();
-    }
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (currentUserData.hostelName) {
-      async function fetchHostelData() {
-        await getHostelData();
-        setIsLoading(false);
-      }
-      fetchHostelData();
-    }
-  }, [currentUserData]);
-
-  if (isLoading) {
-    return <SplashScreenStatic />;
-  }
+  const { email, photoURL } = auth.currentUser;
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -85,22 +37,21 @@ function HomePage() {
           </div>
           <div className="userDetailsHomePage">
             <p className="userPlanHomePage">{currentUserData.plan}</p>
-            <img
-              className="userPhotoHomePage"
-              alt="user photo"
-              src={photoURL}
-              onClick={() => {
-                navigator.vibrate(50);
-                setShowSettings(true);
-                setSelectedFloor(null);
-              }}
-            ></img>
+            <Link to="/SettingsPage">
+              <img
+                className="userPhotoHomePage"
+                alt="user photo"
+                src={photoURL}
+                onClick={() => {
+                  navigator.vibrate(50);
+                  setSelectedFloor(null);
+                }}
+              ></img>
+            </Link>
           </div>
         </div>
       )}
-      {showSettings ? (
-        <SettingsPage />
-      ) : selectedFloor !== null ? (
+      {selectedFloor !== null ? (
         <div>
           <BookingPage
             floorNo={selectedFloor}
@@ -114,16 +65,17 @@ function HomePage() {
           <p>{currentUserData.hostelName}</p>
           <div className="floorBoxContainer">
             {Array.from({ length: currentHostelData.noOfFloors }, (_, i) => (
-              <div
-                className="singleFloorBox"
-                key={i}
-                onClick={() => {
-                  navigator.vibrate(50);
-                  setSelectedFloor(i);
-                }}
-              >
-                {i}
-              </div>
+              <Link to={`/BookingPage/${i}`}>
+                <div
+                  className="singleFloorBox"
+                  onClick={() => {
+                    navigator.vibrate(50);
+                    setSelectedFloor(i);
+                  }}
+                >
+                  {i}
+                </div>
+              </Link>
             ))
               .reduce((acc, curr, index) => {
                 if (index % 3 === 0) acc.push([]);
@@ -140,16 +92,16 @@ function HomePage() {
       )}
 
       <div className="bottomBarHomePage">
-        <div
-          onClick={() => {
-            navigator.vibrate(50);
-            setShowSettings(false);
-            setSelectedFloor(null);
-          }}
-          className="bottomBarIconHomePage"
-        >
-          <Home />
-          {!showSettings && (
+        <Link to="/">
+          <div
+            onClick={() => {
+              navigator.vibrate(50);
+              setSelectedFloor(null);
+            }}
+            className="bottomBarIconHomePage"
+          >
+            <Home />
+
             <p
               style={{
                 padding: "0px",
@@ -163,33 +115,19 @@ function HomePage() {
             >
               —
             </p>
-          )}
-        </div>
-        <div
-          onClick={() => {
-            navigator.vibrate(50);
-            setShowSettings(true);
-            setSelectedFloor(null);
-          }}
-          className="bottomBarIconHomePage"
-        >
-          <Settings />
-          {showSettings && (
-            <p
-              style={{
-                padding: "0px",
-                margin: "0px",
-                fontWeight: "800",
-                marginTop: "-10px",
-                alignSelf: "center",
-                fontSize: "20px",
-                marginBottom: "-10px",
-              }}
-            >
-              —
-            </p>
-          )}
-        </div>
+          </div>
+        </Link>
+        <Link to="/SettingsPage">
+          <div
+            onClick={() => {
+              navigator.vibrate(50);
+              setSelectedFloor(null);
+            }}
+            className="bottomBarIconHomePage"
+          >
+            <Settings />
+          </div>
+        </Link>
       </div>
     </div>
   );

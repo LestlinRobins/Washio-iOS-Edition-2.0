@@ -4,12 +4,15 @@ import DateSelector from "./DateSelector";
 import Lottie from "react-lottie";
 import animationData from "../assets/loading.json";
 import Booking from "./Booking";
-import { Book } from "react-feather";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-feather";
 
-const BookingPage = ({ floorNo, hostelData, userData }) => {
+const BookingPage = ({ hostelData, userData }) => {
+  const navigate = useNavigate();
+  const { floorNo } = useParams(); // Get floorNo from URL
+  const floorNumber = floorNo || parseInt(useParams().floorNo, 10);
   const [slots, setSlots] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedSlot, setSelectedSlot] = useState(null);
   const [isBooking, setIsBooking] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableDates, setAvailableDates] = useState([]);
@@ -35,20 +38,20 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
         .from("time_slots")
         .select("*")
         .eq("hostelName", hostelData.hostelName)
-        .eq("floorNo", floorNo)
+        .eq("floorNo", floorNumber)
         .eq("date", selectedDateString);
 
       if (error) {
         console.error("Error fetching slots:", error);
         return;
       }
-
-      setSlots(data || []);
+      console.log("Fetched slots:", data);
+      setSlots(data);
       setIsLoading(false);
     };
 
     fetchSlots();
-  }, [selectedDate, hostelData.hostelName, floorNo]);
+  }, [selectedDate, hostelData.hostelName, floorNumber]);
   const isSameDay = (date1, date2) => {
     return (
       date1.getFullYear() === date2.getFullYear() &&
@@ -71,12 +74,25 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
   };
   return (
     <div className="bookingContainer">
+      <div className="topBarBookingPage">
+        <div className="appBGBooking"></div>
+        <button
+          className="backButton"
+          onClick={() => {
+            navigator.vibrate(50);
+            navigate("/");
+          }}
+        >
+          <ArrowLeft />
+        </button>
+        <p>Floor {floorNumber} Slot Booking</p>
+      </div>
       <DateSelector
         onDateSelect={(date) => {
           setSelectedDate(date);
         }}
       />
-      <p>
+      <p style={{ color: "white", zIndex: "1" }}>
         Slots for{" "}
         {selectedDate.toLocaleDateString("en-US", {
           month: "long",
@@ -102,7 +118,9 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
         </div>
       )}
       {!isLoading && slots.length === 0 && (
-        <p>No slots have been booked for this date.</p>
+        <p style={{ color: "white", zIndex: "1" }}>
+          No slots have been booked for this date.
+        </p>
       )}
       {/* {!isLoading && slots.length > 0 && (
         <div className="slotsHeader">
@@ -163,7 +181,9 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
         </div>
       )}
       {!isLoading && !isBooking && (
-        <button onClick={() => setIsBooking(true)}>Book a Slot</button>
+        <Link to={"/Booking"}>
+          <button onClick={() => setIsBooking(true)}>Book a Slot</button>
+        </Link>
       )}
       {!isLoading && isBooking && (
         <div className="slotBookingContainer">
@@ -177,7 +197,7 @@ const BookingPage = ({ floorNo, hostelData, userData }) => {
           </button>
           <div>
             <Booking
-              floorNo={floorNo}
+              floorNo={floorNumber}
               selectedDate={selectedDate}
               userData={userData}
             />
