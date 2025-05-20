@@ -194,7 +194,10 @@ const DateSelector = ({
           {dates.map((date, index) => (
             <div
               key={index}
-              onClick={() => handleDateSelect(date)}
+              onClick={() => {
+                navigator.vibrate(50);
+                handleDateSelect(date);
+              }}
               style={dateItemStyle(date)}
             >
               <span style={weekdayStyle}>{formatWeekday(date)}</span>
