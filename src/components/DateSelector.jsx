@@ -45,6 +45,7 @@ const DateSelector = ({
 
   // Handle date selection
   const handleDateSelect = (date) => {
+    navigator.vibrate(50);
     setSelectedDate(date);
     if (onDateSelect) {
       onDateSelect(date);
