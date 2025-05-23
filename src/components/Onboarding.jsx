@@ -5,6 +5,7 @@ import { supabase } from "../supabase";
 import HomePage from "./HomePage";
 import { auth } from "../firebase.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 
 function Onboarding() {
   const [userName, setUserName] = useState("");
@@ -12,6 +13,8 @@ function Onboarding() {
   const [room, setRoom] = useState("");
   const [user] = useAuthState(auth);
   const [errorMsg, setErrorMsg] = useState("");
+  const [currentUserData, setCurrentUserData] = useState(null);
+  const [currentHostelData, setCurrentHostelData] = useState(null);
   const [hostels, setHostels] = useState([]);
   useEffect(() => {
     async function fetchHostels() {
@@ -187,8 +190,20 @@ function Onboarding() {
         No socks were harmed in the making of this app
       </p>
     </div>,
-    <HomePage />,
+
+    // Home screen
+    <div>
+      <button
+        onClick={() => {
+          navigator.vibrate(50);
+          window.location.reload();
+        }}
+      >
+        Go to Home
+      </button>
+    </div>,
   ];
+
   async function handleSubmit() {
     const { error } = await supabase.from("users").insert([
       {
@@ -198,18 +213,48 @@ function Onboarding() {
         roomNo: `${
           hostels.find((h) => h.hostelName === hostel)?.abbreviation || ""
         }-${room}`,
+        plan: "Basic",
       },
     ]);
     if (error) {
       console.error("Error inserting data:", error);
     } else {
       console.log("Data inserted successfully");
+      fetchUserData(); // Fetch user data after insertion
+      fetchHostelData(); // Fetch hostel data after insertion
       // Add a delay before navigating to the next screen
       setTimeout(() => {
         setCurrentScreen(3); // Navigate to the next screen after successful insertion
       }, 2000); // 2-second delay
     }
   }
+
+  async function fetchUserData() {
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("emailID", user.email)
+      .single();
+    if (error) {
+      console.error("Error fetching user data:", error);
+    } else {
+      setCurrentUserData(data);
+    }
+  }
+
+  async function fetchHostelData() {
+    const { data, error } = await supabase
+      .from("Hostels")
+      .select("*")
+      .eq("hostelName", hostel)
+      .single();
+    if (error) {
+      console.error("Error fetching hostel data:", error);
+    } else {
+      setCurrentHostelData(data);
+    }
+  }
+
   const [currentScreen, setCurrentScreen] = useState(0);
 
   return <div>{screens[currentScreen]}</div>;

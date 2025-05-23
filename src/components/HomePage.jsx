@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom";
 function HomePage({ currentHostelData, currentUserData }) {
   const [selectedFloor, setSelectedFloor] = useState(null);
   const { email, photoURL } = auth.currentUser;
-  const navigate = useNavigate();
 
   return (
     <div>
