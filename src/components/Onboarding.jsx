@@ -211,7 +211,6 @@ function Onboarding() {
       setTimeout(() => {
         navigate("/"); // Navigate to the home page after successful insertion
       }, 2000); // 2-second delay
-      navigate("/");
     }
   }
   const [currentScreen, setCurrentScreen] = useState(0);
