@@ -5,11 +5,8 @@ import { supabase } from "../supabase";
 import HomePage from "./HomePage";
 import { auth } from "../firebase.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 
 function Onboarding() {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
   const [userName, setUserName] = useState("");
   const [hostel, setHostel] = useState("");
   const [room, setRoom] = useState("");
@@ -209,7 +206,7 @@ function Onboarding() {
       console.log("Data inserted successfully");
       // Add a delay before navigating to the next screen
       setTimeout(() => {
-        navigate("/"); // Navigate to the home page after successful insertion
+        setCurrentScreen(3); // Navigate to the next screen after successful insertion
       }, 2000); // 2-second delay
     }
   }
