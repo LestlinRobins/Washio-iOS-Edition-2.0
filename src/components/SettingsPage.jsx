@@ -2,14 +2,28 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import SignOut from "./SignOut";
 import { supabase } from "../supabase";
-import { Link } from "react-router-dom";
-import { Home, Settings } from "react-feather";
+import { Link, useNavigate } from "react-router-dom";
+import { Home, Settings, ArrowLeft } from "react-feather";
 
 function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
+  const navigate = useNavigate();
 
   return (
     <div>
+      <div className="topBarBookingPage">
+        <button
+          className="backButton"
+          onClick={() => {
+            navigator.vibrate(50);
+            navigate("/");
+          }}
+        >
+          <ArrowLeft />
+        </button>
+        <p>Settings</p>
+      </div>
+
       <img src={photoURL} alt="Profile" />
       <p>{currentUserData.name}</p>
       <p>{currentUserData.emailID}</p>

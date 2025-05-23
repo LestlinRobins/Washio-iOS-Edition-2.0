@@ -5,7 +5,7 @@ import Lottie from "react-lottie";
 import animationData from "../assets/loading.json";
 import Booking from "./Booking";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "react-feather";
+import { ArrowLeft, Home, Settings } from "react-feather";
 
 const BookingPage = ({ hostelData, userData }) => {
   const navigate = useNavigate();
@@ -204,6 +204,41 @@ const BookingPage = ({ hostelData, userData }) => {
           </div>
         </div>
       )}
+      <div className="bottomBarBookingPage">
+        <Link to="/">
+          <div
+            onClick={() => {
+              navigator.vibrate(50);
+            }}
+            className="bottomBarIconHomePage"
+          >
+            <Home />
+            <p
+              style={{
+                padding: "0px",
+                margin: "0px",
+                fontWeight: "800",
+                marginTop: "-10px",
+                alignSelf: "center",
+                fontSize: "20px",
+                marginBottom: "-10px",
+              }}
+            >
+              —
+            </p>
+          </div>
+        </Link>
+        <Link to="/SettingsPage">
+          <div
+            onClick={() => {
+              navigator.vibrate(50);
+            }}
+            className="bottomBarIconHomePage"
+          >
+            <Settings />
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };
