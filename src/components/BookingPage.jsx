@@ -167,12 +167,12 @@ const BookingPage = ({ hostelData, userData }) => {
                       </p>
                     )}
                     {findStatus(slot) === 2 && (
-                      <p style={{ color: "orange", fontSize: "24px" }}>●</p>
+                      <p style={{ color: "red", fontSize: "24px" }}>●</p>
                     )}
                   </span>
                 ) : (
                   <span className="slotStatus">
-                    <p style={{ color: "gray", fontSize: "24px" }}>●</p>
+                    <p style={{ color: "red", fontSize: "24px" }}>●</p>
                   </span>
                 )}
               </div>
@@ -181,8 +181,18 @@ const BookingPage = ({ hostelData, userData }) => {
         </div>
       )}
       {!isLoading && !isBooking && (
-        <Link to={"/Booking"}>
-          <button onClick={() => setIsBooking(true)}>Book a Slot</button>
+        <Link
+          style={{ zIndex: 2 }}
+          to={"/Booking"}
+          state={{
+            floorNo: floorNumber,
+            selectedDate: selectedDate,
+            userData: userData,
+          }}
+        >
+          <button style={{ zIndex: 2 }} onClick={() => setIsBooking(true)}>
+            Book a Slot
+          </button>
         </Link>
       )}
       {!isLoading && isBooking && (
