@@ -81,9 +81,11 @@ function SignIn() {
         }}
         onTouchStart={(e) => {
           e.target.style.backgroundColor = "rgba(44, 255, 47, 0.8)";
+          e.target.style.transform = "scale(0.95)";
         }}
         onTouchEnd={(e) => {
           e.target.style.backgroundColor = "#2CFF2F";
+          e.target.style.transform = "scale(1)";
         }}
         initial={{
           opacity: 0,
@@ -111,9 +113,9 @@ function SignIn() {
           fontFamily: "Albert Sans",
           fontStyle: "italic",
         }}
-        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
-        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
-        transition={{ duration: 0.6, delay: 1.4 }}
+        initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }}
+        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+        transition={{ duration: 0.6, delay: 1.5 }}
       >
         You log in, we assume you're cool with the{" "}
         <a href="/terms-of-service" target="_blank" rel="noopener noreferrer">
