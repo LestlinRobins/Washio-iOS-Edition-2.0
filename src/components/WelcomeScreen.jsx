@@ -51,7 +51,7 @@ function WelcomeScreen({ setStartSelected }) {
           color: "#959595",
           fontWeight: "400",
           position: "relative",
-          top: "14vh",
+          top: "13vh",
           fontSize: "17px",
         }}
       >
