@@ -91,7 +91,7 @@ function SignIn() {
           e.target.style.transform = "scale(1)";
           e.target.style.boxShadow = "none";
           // e.target.style.filter = "blur(0px)";
-          e.target.style.transition = "all 0.1s ease";
+          e.target.style.transition = "all 0.8s ease";
         }}
         initial={{
           opacity: 0,
@@ -104,7 +104,7 @@ function SignIn() {
           scale: 1,
         }}
         transition={{ duration: 0.6, delay: 1.3 }}
-        // onClick={signInWithGoogle}
+        onClick={signInWithGoogle}
       >
         Sign in with Google
       </motion.button>
