@@ -174,7 +174,7 @@ function Onboarding() {
               color: "gray",
               fontFamily: "Albert Sans, sans-serif",
               position: "absolute",
-              bottom: "25.5vh",
+              top: "67%",
               width: "80vw",
               alignSelf: "flex-start",
               textAlign: "left",
