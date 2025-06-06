@@ -81,7 +81,7 @@ function App() {
     fetchUserData();
   }, [user, loading]);
 
-  if (!startSelected) {
+  if (!startSelected && !loading && !user) {
     return <WelcomeScreen setStartSelected={setStartSelected} />;
   }
   // Show splash screen while authentication is loading

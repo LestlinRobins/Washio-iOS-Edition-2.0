@@ -96,7 +96,7 @@ function SignIn() {
         }}
         onTouchStart={(e) => {
           e.target.style.backgroundColor = "rgb(44, 255, 48)";
-          e.target.style.transform = "scale(1.05)";
+          e.target.style.transform = "scale(0.95)";
           e.target.style.boxShadow = "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
           // e.target.style.filter = "blur(2px)";
           e.target.style.transition = "all 0.1s ease";
