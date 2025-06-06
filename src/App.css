@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import url("https://fonts.cdnfonts.com/css/laviossa");
 #root {
   text-align: center;
 
@@ -8,7 +9,7 @@
 }
 body,
 html {
-  background: linear-gradient(to bottom right, #066f1f 1%, black 45%);
+  background: linear-gradient(to top left, #002f05 25%, black 80%);
   width: 100vw;
   height: 100vh;
   margin: 0;
@@ -54,6 +55,12 @@ html {
   justify-content: center;
   height: 100%;
   width: 100vw;
+  font-family: "Laviossa", sans-serif;
+}
+
+.login-illustration {
+  width: 80vw;
+  margin-top: -12vh;
 }
 .onboarding-name-collection-screen {
   display: flex;
