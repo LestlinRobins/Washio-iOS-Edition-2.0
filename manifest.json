@@ -3,7 +3,7 @@
   "short_name": "Wash.io",
   "description": "Washing machine slot booking app",
   "categories": ["college", "tool"],
-  "theme_color": "transparent",
+  "theme_color": "#000000",
   "background_color": "#000000",
   "display": "standalone",
   "orientation": "natural",
