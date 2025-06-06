@@ -27,9 +27,14 @@ function SignIn() {
         alt="Description"
         width="300"
         className="login-illustration"
-        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
-        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+        transition={{
+          duration: 0.6,
+          delay: 0.1,
+          type: "spring",
+          stiffness: 100,
+        }}
       />
       <motion.h1
         style={{
@@ -40,9 +45,14 @@ function SignIn() {
           position: "relative",
           top: "3vh",
         }}
-        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
-        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+        transition={{
+          duration: 0.6,
+          delay: 0.3,
+          type: "spring",
+          stiffness: 100,
+        }}
       >
         Let's get you <br />
         signed in!
@@ -57,9 +67,14 @@ function SignIn() {
           marginTop: "0.5rem",
           fontSize: "17px",
         }}
-        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
-        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
-        transition={{ duration: 0.6, delay: 0.5 }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+        transition={{
+          duration: 0.6,
+          delay: 0.5,
+          type: "spring",
+          stiffness: 100,
+        }}
       >
         Just for the good vibes.
       </motion.p>

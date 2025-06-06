@@ -82,9 +82,9 @@ html {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: black;
   padding-left: 3vh;
   padding-right: 3vh;
+  font-family: "Laviossa", sans-serif;
 }
 .onboarding-name-collection-input-container {
   display: flex;
@@ -92,6 +92,13 @@ html {
   width: 80%;
   align-self: flex-start;
   margin-left: 0px;
+}
+
+.name-illustration {
+  width: 115vw;
+  position: fixed;
+  top: 8vh;
+  left: 10vw;
 }
 .onboarding-error-div {
   color: red;
@@ -104,18 +111,25 @@ html {
   font-size: 1.2em;
   align-self: flex-start;
 }
-
+.onboarding-name-collection-input::placeholder {
+  color: #82b086;
+}
 .onboarding-hostel-collection-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: black;
   padding-left: 3vh;
   padding-right: 3vh;
+  font-family: "Laviossa", sans-serif;
 }
-
+.hostel-illustration {
+  width: 105vw;
+  position: fixed;
+  top: 15vh;
+  left: 0vw;
+}
 .topBarHomePage {
   display: flex;
   justify-content: space-between;
