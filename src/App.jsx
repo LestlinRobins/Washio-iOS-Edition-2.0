@@ -16,6 +16,7 @@ import SignIn from "./components/SignIn";
 import SettingsPage from "./components/SettingsPage.jsx";
 import Booking from "./components/Booking.jsx";
 import BookingPage from "./components/BookingPage.jsx";
+import WelcomeScreen from "./components/WelcomeScreen.jsx";
 import SplashScreenStatic from "./components/SplashScreenStatic.jsx";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [currentUserData, setCurrentUserData] = useState(null);
   const [currentHostelData, setCurrentHostelData] = useState(null);
   const [isDataLoading, setIsDataLoading] = useState(true);
+  const [startSelected, setStartSelected] = useState(false);
 
   // Step 1: Watch for authentication changes
   useEffect(() => {
@@ -79,6 +81,9 @@ function App() {
     fetchUserData();
   }, [user, loading]);
 
+  if (!startSelected) {
+    return <WelcomeScreen setStartSelected={setStartSelected} />;
+  }
   // Show splash screen while authentication is loading
   // or while we're fetching user/hostel data
   if (loading || (user && isDataLoading)) {
