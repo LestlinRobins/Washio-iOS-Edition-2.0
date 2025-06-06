@@ -64,7 +64,6 @@ function SignIn() {
         Just for the good vibes.
       </motion.p>
       <motion.button
-        className="sign-in-with-google-button"
         style={{
           alignSelf: "center",
           backgroundColor: "#2CFF2F",
@@ -77,16 +76,22 @@ function SignIn() {
           fontSize: "20px",
           outline: "none",
           border: "none",
-          WebkitTapHighlightColor: "rgba(0, 0, 0, 0.1)",
+          WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
           transition: "all 0.1s ease",
         }}
         onTouchStart={(e) => {
-          e.target.style.backgroundColor = "rgba(44, 255, 47, 0.8)";
-          e.target.style.transform = "scale(0.95)";
+          e.target.style.backgroundColor = "rgb(44, 255, 48)";
+          e.target.style.transform = "scale(1.05)";
+          e.target.style.boxShadow = "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
+          // e.target.style.filter = "blur(2px)";
+          e.target.style.transition = "all 0.1s ease";
         }}
         onTouchEnd={(e) => {
           e.target.style.backgroundColor = "#2CFF2F";
           e.target.style.transform = "scale(1)";
+          e.target.style.boxShadow = "none";
+          // e.target.style.filter = "blur(0px)";
+          e.target.style.transition = "all 0.1s ease";
         }}
         initial={{
           opacity: 0,
