@@ -76,6 +76,7 @@ function SignIn() {
           height: "60px",
           fontSize: "20px",
           outline: "none",
+          border: "none",
           WebkitTapHighlightColor: "rgba(0, 0, 0, 0.1)",
           transition: "all 0.1s ease",
         }}
