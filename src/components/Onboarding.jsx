@@ -71,7 +71,7 @@ function Onboarding() {
           alignSelf: "center",
           width: "75vw",
           position: "relative",
-          top: "5vh",
+          top: "4vh",
           fontSize: "20px",
           padding: "0px",
           borderRadius: "20px",
@@ -173,7 +173,7 @@ function Onboarding() {
             style={{
               color: "gray",
               fontFamily: "Albert Sans, sans-serif",
-              position: "absolute",
+              position: "fixed",
               top: "67%",
               width: "80vw",
               alignSelf: "flex-start",
