@@ -24,7 +24,7 @@ function WelcomeScreen({ setStartSelected }) {
           textAlign: "center",
           lineHeight: "150%",
           position: "relative",
-          top: "2.5vh",
+          top: "18vh",
         }}
       >
         {text.split("").map((char, index) => (
@@ -50,7 +50,8 @@ function WelcomeScreen({ setStartSelected }) {
           fontStyle: "italic",
           color: "#959595",
           fontWeight: "400",
-          marginTop: "0rem",
+          position: "relative",
+          top: "14vh",
           fontSize: "17px",
         }}
       >
@@ -109,7 +110,10 @@ function WelcomeScreen({ setStartSelected }) {
           scale: 1,
         }}
         transition={{ duration: 0.6, delay: 2.7 }}
-        onClick={() => setStartSelected(true)}
+        onClick={() => {
+          navigator.vibrate(50);
+          setStartSelected(true);
+        }}
       >
         Get started!
       </motion.button>

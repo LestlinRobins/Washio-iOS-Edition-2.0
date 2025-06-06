@@ -64,6 +64,8 @@ html {
 }
 .welcome-illustration {
   width: 118vw;
+  position: fixed;
+  top: 17vh;
 }
 .welcome-screen-container {
   display: flex;
