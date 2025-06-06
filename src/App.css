@@ -62,6 +62,11 @@ html {
   width: 80vw;
   margin-top: -12vh;
 }
+
+.sign-in-with-google-button:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease-in-out;
+}
 .onboarding-name-collection-screen {
   display: flex;
   flex-direction: column;

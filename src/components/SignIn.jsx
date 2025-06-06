@@ -3,6 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { auth } from "../firebase.jsx";
 import SplashScreenStatic from "./SplashScreenStatic.jsx";
+import { motion } from "motion/react";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
@@ -21,13 +22,16 @@ function SignIn() {
   }
   return (
     <div className="sign-in-screen-container">
-      <img
+      <motion.img
         src="/illustrations/login.svg"
         alt="Description"
         width="300"
         className="login-illustration"
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
+        transition={{ duration: 0.6, delay: 0.1 }}
       />
-      <h1
+      <motion.h1
         style={{
           fontSize: "40px",
           alignSelf: "center",
@@ -36,11 +40,14 @@ function SignIn() {
           position: "relative",
           top: "3vh",
         }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
+        transition={{ duration: 0.6, delay: 0.3 }}
       >
         Let's get you <br />
         signed in!
-      </h1>
-      <p
+      </motion.h1>
+      <motion.p
         style={{
           alignSelf: "center",
           fontFamily: "Albert Sans",
@@ -50,10 +57,14 @@ function SignIn() {
           marginTop: "0.5rem",
           fontSize: "17px",
         }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
+        transition={{ duration: 0.6, delay: 0.5 }}
       >
         Just for the good vibes.
-      </p>
-      <button
+      </motion.p>
+      <motion.button
+        className="sign-in-with-google-button"
         style={{
           alignSelf: "center",
           backgroundColor: "#2CFF2F",
@@ -64,17 +75,35 @@ function SignIn() {
           borderRadius: "25px",
           height: "60px",
           fontSize: "20px",
+          outline: "none",
+          WebkitTapHighlightColor: "rgba(0, 0, 0, 0.1)",
+          transition: "all 0.1s ease",
         }}
-        onClick={signInWithGoogle}
+        onTouchStart={(e) => {
+          e.target.style.backgroundColor = "rgba(44, 255, 47, 0.8)";
+        }}
+        onTouchEnd={(e) => {
+          e.target.style.backgroundColor = "#2CFF2F";
+        }}
+        initial={{
+          opacity: 0,
+          filter: "blur(10px)",
+          scale: 0.9,
+        }}
+        animate={{
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+        }}
+        transition={{ duration: 0.6, delay: 1.3 }}
+        // onClick={signInWithGoogle}
       >
         Sign in with Google
-      </button>
-      <p
+      </motion.button>
+      <motion.p
         style={{
           position: "absolute",
           bottom: "1vh",
-          left: "50%",
-          transform: "translateX(-50%)",
           color: "gray",
           textAlign: "center",
           fontSize: "12px",
@@ -82,13 +111,16 @@ function SignIn() {
           fontFamily: "Albert Sans",
           fontStyle: "italic",
         }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
+        transition={{ duration: 0.6, delay: 1.4 }}
       >
-        By signing in, you confirm you’ve read Wash.io's{" "}
+        You log in, we assume you're cool with the{" "}
         <a href="/terms-of-service" target="_blank" rel="noopener noreferrer">
           terms of service
         </a>
-        , and that you're okay with it.
-      </p>
+        . That's how trust works, right?{" "}
+      </motion.p>
     </div>
   );
 }
