@@ -13,8 +13,8 @@ function WelcomeScreen({ setStartSelected }) {
         alt="Description"
         width="400"
         className="welcome-illustration"
-        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px", y: "-10px" }}
-        animate={{ opacity: 1, filter: "blur(0px)", x: "0px", y: "0px" }}
+        initial={{ opacity: 0, filter: "blur(10px)", scale: 1.1 }}
+        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       />
       <motion.h1
@@ -78,7 +78,7 @@ function WelcomeScreen({ setStartSelected }) {
           color: "black",
           position: "absolute",
           bottom: "12vh",
-          width: "70vw",
+          width: "55vw",
           borderRadius: "25px",
           height: "60px",
           fontSize: "20px",
@@ -109,7 +109,7 @@ function WelcomeScreen({ setStartSelected }) {
           filter: "blur(0px)",
           scale: 1,
         }}
-        transition={{ duration: 0.6, delay: 2.7 }}
+        transition={{ duration: 0.6, delay: 3 }}
         onClick={() => {
           navigator.vibrate(50);
           setStartSelected(true);
