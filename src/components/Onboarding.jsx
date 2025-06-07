@@ -415,15 +415,49 @@ function Onboarding() {
 
     // Onboarding screen 3
     <div className="onboarding-hostel-collection-screen">
-      <button
-        style={{ position: "fixed", top: "2vh", left: "4vw" }}
+      <motion.button
+        style={{
+          position: "fixed",
+          top: "1.5vh",
+          left: "0vw",
+          backgroundColor: "transparent",
+          fontFamily: "Albert Sans, sans-serif",
+          alignItems: "center",
+          alignSelf: "flex-start",
+          display: "flex",
+          flexDirection: "row",
+          gap: "5px",
+        }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-10px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+        transition={{
+          duration: 0.5,
+          delay: 0.1,
+          type: "spring",
+          stiffness: 100,
+        }}
         onClick={() => {
           navigator.vibrate(50);
           setCurrentScreen(1);
         }}
       >
+        <ArrowLeft size={18} />
         Back
-      </button>
+      </motion.button>
+      <motion.img
+        src="/illustrations/room.svg"
+        alt="Description"
+        width="300"
+        className="room-illustration"
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+        transition={{
+          duration: 0.6,
+          delay: 0.1,
+          type: "spring",
+          stiffness: 100,
+        }}
+      />
       <h1
         style={{
           fontSize: "40px",
@@ -431,50 +465,135 @@ function Onboarding() {
           textAlign: "left",
         }}
       >
-        Welcome to <br />
-        Wash.io
+        Which room?
       </h1>
-      <p
-        style={{
-          fontSize: "20px",
-          color: "gray",
-          alignSelf: "flex-start",
-        }}
-      >
-        Type in your room number
-      </p>
       <div className="onboarding-name-collection-input-container">
-        <input
+        <motion.input
           value={`${
             hostels.find((h) => h.hostelName === hostel)?.abbreviation || ""
           }-`}
           readOnly
-          style={{ width: "50px", marginRight: "5px" }}
+          style={{
+            width: "50px",
+            marginRight: "5px",
+            fontSize: "20px",
+            padding: "0px",
+            borderRadius: "20px",
+            border: "none",
+            height: "60px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            backgroundColor: "#004901",
+            fontFamily: "Albert Sans, sans-serif",
+            fontSize: "18px",
+          }}
+          initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+          animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+          transition={{
+            duration: 0.6,
+            delay: 0.5,
+            type: "spring",
+            stiffness: 100,
+          }}
           className="onboarding-name-collection-input"
         />
-        <input
+        <motion.input
           placeholder="Your room number"
           onChange={(e) => setRoom(e.target.value)}
-          className="onboarding-name-collection-input"
           type="number"
           required
-        />
-      </div>
-      {room && (
-        <button
-          style={{ position: "relative", top: "5vh" }}
-          onClick={() => {
-            navigator.vibrate(50);
-            handleSubmit();
-            setCurrentScreen(3);
+          value={room}
+          style={{
+            fontSize: "20px",
+            padding: "0px",
+            borderRadius: "20px",
+            border: "none",
+            height: "60px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            backgroundColor: "#004901",
+            fontFamily: "Albert Sans, sans-serif",
+            fontSize: "18px",
           }}
-        >
-          Complete
-        </button>
-      )}
-      <p style={{ position: "fixed", bottom: "5vh", color: "gray" }}>
-        No socks were harmed in the making of this app
-      </p>
+          onFocus={(e) => {
+            e.target.style.outline = "1px solid #2CFF2F";
+          }}
+          onBlur={(e) => {
+            e.target.style.outline = "none";
+          }}
+          initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+          animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+          transition={{
+            duration: 0.6,
+            delay: 0.7, // Slightly delayed for staggered effect
+            type: "spring",
+            stiffness: 100,
+          }}
+          className="onboarding-name-collection-input"
+        />
+      </div>{" "}
+      <AnimatePresence>
+        {room && (
+          <motion.button
+            style={{
+              alignSelf: "center",
+              backgroundColor: "#2CFF2F",
+              color: "black",
+              position: "absolute",
+              bottom: "12vh",
+              width: "40vw",
+              borderRadius: "25px",
+              height: "60px",
+              fontSize: "20px",
+              outline: "none",
+              border: "none",
+              WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
+              transition: "all 0.1s ease",
+            }}
+            onTouchStart={(e) => {
+              e.target.style.backgroundColor = "rgb(44, 255, 48)";
+              e.target.style.transform = "scale(0.95)";
+              e.target.style.boxShadow =
+                "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
+              // e.target.style.filter = "blur(2px)";
+              e.target.style.transition = "all 0.1s ease";
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.backgroundColor = "#2CFF2F";
+              e.target.style.transform = "scale(1)";
+              e.target.style.boxShadow = "none";
+              // e.target.style.filter = "blur(0px)";
+              e.target.style.transition = "all 0.8s ease";
+            }}
+            initial={{
+              opacity: 0,
+              filter: "blur(10px)",
+              scale: 0.9,
+            }}
+            animate={{
+              opacity: 1,
+              filter: "blur(0px)",
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              filter: "blur(10px)",
+              scale: 0.9,
+              transition: { duration: 0.2 },
+            }}
+            transition={{
+              duration: 0.5,
+              delay: 0.3,
+            }}
+            onClick={() => {
+              navigator.vibrate(50);
+              setCurrentScreen(2);
+            }}
+          >
+            Complete!
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>,
 
     // Home screen

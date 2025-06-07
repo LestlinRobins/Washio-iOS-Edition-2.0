@@ -130,6 +130,12 @@ html {
   top: 15vh;
   left: 0vw;
 }
+.room-illustration {
+  width: 90vw;
+  position: fixed;
+  top: 17vh;
+  align-self: center;
+}
 .topBarHomePage {
   display: flex;
   justify-content: space-between;
