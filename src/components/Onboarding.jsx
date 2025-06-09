@@ -48,37 +48,8 @@ function Onboarding() {
         80,
         75,
         70,
-        80,
-        60,
 
-        // Phase 3: Smooth acceleration (2-3s)
-        // Build excitement through TIMING, not intensity
-        85,
-        50,
-        80,
-        45,
-        85,
-        40,
-        80,
-        35,
-        85,
-        30,
-        80,
-        25,
-        85,
-        22,
-        80,
-        20,
-        85,
-        18,
-        80,
-        15,
-        85,
-        12,
-        80,
-        10,
-
-        // THE MOMENT - Profile complete! (at 3s mark)
+        // THE MOMENT - Profile complete! (at 2s mark)
         300,
         120, // Single powerful c
       ];
