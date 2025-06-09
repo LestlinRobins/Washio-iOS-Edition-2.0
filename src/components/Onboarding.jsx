@@ -24,9 +24,88 @@ function Onboarding() {
   const buildingPattern = () => {
     if (navigator.vibrate) {
       const pattern = [
-        80, 500, 80, 400, 80, 300, 50, 200, 75, 180, 80, 160, 80, 140, 80, 120,
-        80, 100, 80, 80, 80, 60, 80, 40, 80, 20, 80, 10, 80, 5, 80, 4, 80, 3,
-        80, 2, 80, 2, 80, 2, 80, 2, 80, 2, 80, 2, 80, 2, 80, 1, 80, 50, 250,
+        // Phase 1: Gentle anticipation (0-1s)
+        25,
+        250,
+        30,
+        220,
+        35,
+        200,
+        40,
+        180,
+
+        // Phase 2: Building momentum (1-2s)
+        45,
+        160,
+        50,
+        140,
+        55,
+        120,
+        60,
+        100,
+        65,
+        90,
+        70,
+        80,
+        75,
+        70,
+        80,
+        60,
+
+        // Phase 3: Smooth acceleration (2-3s)
+        // Build excitement through TIMING, not intensity
+        85,
+        50,
+        80,
+        45,
+        85,
+        40,
+        80,
+        35,
+        85,
+        30,
+        80,
+        25,
+        85,
+        22,
+        80,
+        20,
+        85,
+        18,
+        80,
+        15,
+        85,
+        12,
+        80,
+        10,
+
+        // Phase 4: Rapid-fire finale (3-4s)
+        85,
+        8,
+        80,
+        6,
+        85,
+        5,
+        80,
+        4,
+        85,
+        3,
+        80,
+        2,
+        85,
+        2,
+        80,
+        1,
+        85,
+        1,
+        80,
+        1,
+
+        // THE MOMENT - Profile complete!
+        300,
+        120, // Single powerful completion pulse
+
+        // Quick celebration taps
       ];
       navigator.vibrate(pattern);
     }
