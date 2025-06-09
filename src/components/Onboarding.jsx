@@ -851,7 +851,7 @@ function Onboarding() {
       }, 5000);
       setTimeout(() => {
         setBuildingText("Your profile is ready!");
-      }, 2000);
+      }, 1500);
     }
   }
 
