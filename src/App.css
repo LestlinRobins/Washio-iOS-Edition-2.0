@@ -3,7 +3,7 @@
 @import url("https://fonts.cdnfonts.com/css/laviossa");
 #root {
   text-align: center;
-
+  color: white;
   width: 100vw;
   font-family: "Albert Sans", sans-serif;
 }

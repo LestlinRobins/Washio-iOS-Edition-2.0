@@ -88,7 +88,7 @@ function Onboarding() {
       />
       <motion.h1
         style={{
-          fontSize: "40px",
+          fontSize: "4vh",
           alignSelf: "center",
           textAlign: "center",
           lineHeight: "150%",
@@ -313,7 +313,7 @@ function Onboarding() {
       />
       <motion.h1
         style={{
-          fontSize: "40px",
+          fontSize: "4vh",
           alignSelf: "center",
           textAlign: "center",
           lineHeight: "150%",
@@ -506,7 +506,7 @@ function Onboarding() {
       <motion.h1
         key="room-heading"
         style={{
-          fontSize: "40px",
+          fontSize: "4vh",
           alignSelf: "center",
           textAlign: "center",
           lineHeight: "150%",
@@ -712,7 +712,7 @@ function Onboarding() {
               <motion.h1
                 key="welcome-message"
                 style={{
-                  fontSize: "40px",
+                  fontSize: "4vh",
                   alignSelf: "center",
                   textAlign: "center",
                   lineHeight: "150%",
