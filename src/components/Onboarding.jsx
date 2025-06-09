@@ -6,6 +6,8 @@ import { auth } from "../firebase.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft } from "react-feather";
+import Lottie from "lottie-react";
+import buildingAnimation from "../../public/animations/final.json";
 
 function Onboarding() {
   const [userName, setUserName] = useState("");
@@ -15,7 +17,21 @@ function Onboarding() {
   const [errorMsg, setErrorMsg] = useState("");
   const [currentUserData, setCurrentUserData] = useState(null);
   const [currentHostelData, setCurrentHostelData] = useState(null);
+  const [buildingProfile, setBuildingProfile] = useState(false);
+  const [buildingText, setBuildingText] = useState("Just give us a moment...");
   const [hostels, setHostels] = useState([]);
+
+  const buildingPattern = () => {
+    if (navigator.vibrate) {
+      const pattern = [
+        80, 500, 80, 400, 80, 300, 50, 200, 75, 180, 80, 160, 80, 140, 80, 120,
+        80, 100, 80, 80, 80, 60, 80, 40, 80, 20, 80, 10, 80, 5, 80, 4, 80, 3,
+        80, 2, 80, 2, 80, 2, 80, 2, 80, 2, 80, 2, 80, 2, 80, 1, 80, 50, 250,
+      ];
+      navigator.vibrate(pattern);
+    }
+  };
+
   useEffect(() => {
     async function fetchHostels() {
       const { data, error } = await supabase.from("Hostels").select("*");
@@ -30,7 +46,7 @@ function Onboarding() {
 
   const screens = [
     // Onboarding screen 1
-    <div className="onboarding-name-collection-screen">
+    <div key="screen-0" className="onboarding-name-collection-screen">
       <motion.img
         src="/illustrations/name.svg"
         alt="Description"
@@ -72,7 +88,6 @@ function Onboarding() {
           width: "75vw",
           position: "relative",
           top: "4vh",
-          fontSize: "20px",
           padding: "0px",
           borderRadius: "20px",
           border: "none",
@@ -128,14 +143,12 @@ function Onboarding() {
               e.target.style.transform = "scale(0.95)";
               e.target.style.boxShadow =
                 "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
-              // e.target.style.filter = "blur(2px)";
               e.target.style.transition = "all 0.1s ease";
             }}
             onTouchEnd={(e) => {
               e.target.style.backgroundColor = "#2CFF2F";
               e.target.style.transform = "scale(1)";
               e.target.style.boxShadow = "none";
-              // e.target.style.filter = "blur(0px)";
               e.target.style.transition = "all 0.8s ease";
             }}
             initial={{
@@ -229,7 +242,7 @@ function Onboarding() {
     </div>,
 
     // Onboarding screen 2
-    <div className="onboarding-hostel-collection-screen">
+    <div key="screen-1" className="onboarding-hostel-collection-screen">
       <motion.button
         style={{
           position: "fixed",
@@ -311,7 +324,6 @@ function Onboarding() {
           width: "75vw",
           position: "relative",
           top: "5vh",
-          fontSize: "20px",
           padding: "0px",
           borderRadius: "20px",
           border: "none",
@@ -363,14 +375,12 @@ function Onboarding() {
               e.target.style.transform = "scale(0.95)";
               e.target.style.boxShadow =
                 "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
-              // e.target.style.filter = "blur(2px)";
               e.target.style.transition = "all 0.1s ease";
             }}
             onTouchEnd={(e) => {
               e.target.style.backgroundColor = "#2CFF2F";
               e.target.style.transform = "scale(1)";
               e.target.style.boxShadow = "none";
-              // e.target.style.filter = "blur(0px)";
               e.target.style.transition = "all 0.8s ease";
             }}
             initial={{
@@ -413,8 +423,8 @@ function Onboarding() {
       ></motion.p>
     </div>,
 
-    // Onboarding screen 3
-    <div className="onboarding-hostel-collection-screen">
+    // Onboarding screen 3 - FIXED VERSION
+    <div key="screen-2" className="onboarding-room-collection-screen">
       <motion.button
         style={{
           position: "fixed",
@@ -444,11 +454,19 @@ function Onboarding() {
         <ArrowLeft size={18} />
         Back
       </motion.button>
+
+      {/* Fixed: Added key prop and ensured proper motion component structure */}
       <motion.img
+        key="room-illustration"
         src="/illustrations/room.svg"
-        alt="Description"
+        alt="Room illustration"
         width="300"
         className="room-illustration"
+        style={{
+          display: "block", // Ensure proper display
+          position: "fixed", // Ensure positioning context
+          zIndex: 1, // Ensure it's above other elements
+        }}
         initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
         animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
         transition={{
@@ -458,16 +476,35 @@ function Onboarding() {
           stiffness: 100,
         }}
       />
-      <h1
+
+      {/* Fixed: Added key prop and ensured proper styling */}
+      <motion.h1
+        key="room-heading"
         style={{
           fontSize: "40px",
-          alignSelf: "flex-start",
-          textAlign: "left",
+          alignSelf: "center",
+          textAlign: "center",
+          lineHeight: "150%",
+          position: "relative",
+          top: "0vh",
+          margin: 0, // Remove default margins that might interfere
+          padding: 0, // Remove default padding
+          display: "block", // Ensure proper display
+          zIndex: 1, // Ensure proper stacking
+        }}
+        initial={{ opacity: 0, filter: "blur(10px)", x: "-100px" }}
+        animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
+        transition={{
+          duration: 0.6,
+          delay: 0.3,
+          type: "spring",
+          stiffness: 100,
         }}
       >
         Which room?
-      </h1>
-      <div className="onboarding-name-collection-input-container">
+      </motion.h1>
+
+      <div className="onboarding-room-collection-input-container">
         <motion.input
           value={`${
             hostels.find((h) => h.hostelName === hostel)?.abbreviation || ""
@@ -475,9 +512,10 @@ function Onboarding() {
           readOnly
           style={{
             width: "50px",
-            marginRight: "5px",
-            fontSize: "20px",
             padding: "0px",
+            position: "relative",
+            marginRight: "5px",
+            top: "2vh",
             borderRadius: "20px",
             border: "none",
             height: "60px",
@@ -504,10 +542,12 @@ function Onboarding() {
           required
           value={room}
           style={{
-            fontSize: "20px",
             padding: "0px",
             borderRadius: "20px",
             border: "none",
+            position: "relative",
+            top: "2vh",
+            alignSelf: "center",
             height: "60px",
             paddingLeft: "20px",
             paddingRight: "20px",
@@ -525,13 +565,14 @@ function Onboarding() {
           animate={{ opacity: 1, filter: "blur(0px)", x: "0px" }}
           transition={{
             duration: 0.6,
-            delay: 0.7, // Slightly delayed for staggered effect
+            delay: 0.7,
             type: "spring",
             stiffness: 100,
           }}
           className="onboarding-name-collection-input"
         />
-      </div>{" "}
+      </div>
+
       <AnimatePresence>
         {room && (
           <motion.button
@@ -555,14 +596,12 @@ function Onboarding() {
               e.target.style.transform = "scale(0.95)";
               e.target.style.boxShadow =
                 "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
-              // e.target.style.filter = "blur(2px)";
               e.target.style.transition = "all 0.1s ease";
             }}
             onTouchEnd={(e) => {
               e.target.style.backgroundColor = "#2CFF2F";
               e.target.style.transform = "scale(1)";
               e.target.style.boxShadow = "none";
-              // e.target.style.filter = "blur(0px)";
               e.target.style.transition = "all 0.8s ease";
             }}
             initial={{
@@ -587,7 +626,8 @@ function Onboarding() {
             }}
             onClick={() => {
               navigator.vibrate(50);
-              setCurrentScreen(2);
+              handleSubmit();
+              setCurrentScreen(3);
             }}
           >
             Complete!
@@ -597,19 +637,173 @@ function Onboarding() {
     </div>,
 
     // Home screen
-    <div>
-      <button
-        onClick={() => {
-          navigator.vibrate(50);
-          window.location.reload();
-        }}
-      >
-        Go to Home
-      </button>
-    </div>,
+    <AnimatePresence>
+      <div key="screen-3" className="last-onboarding-screen">
+        <AnimatePresence mode="wait">
+          {buildingProfile && (
+            <motion.div
+              key="building-profile" // Use a stable string key instead of the boolean state
+              className="building-profile-container"
+              initial={{ opacity: 0, filter: "blur(10px)", y: "10px" }}
+              animate={{ opacity: 1, filter: "blur(0px)", y: "0px" }}
+              exit={{
+                opacity: 0,
+                filter: "blur(10px)",
+                scale: 0.9,
+                transition: { duration: 0.4, ease: "easeInOut" },
+              }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Lottie animationData={buildingAnimation} loop={false} />
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={buildingText}
+                  initial={{ opacity: 0, filter: "blur(10px)", y: "10px" }}
+                  animate={{ opacity: 1, filter: "blur(0px)", y: "0px" }}
+                  transition={{ duration: 0.6, delay: 0 }}
+                  exit={{
+                    opacity: 0,
+                    filter: "blur(10px)",
+                    scale: 0.9,
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  {buildingText}
+                </motion.p>
+              </AnimatePresence>
+            </motion.div>
+          )}
+
+          {!buildingProfile && (
+            <div className="completion-screen">
+              <motion.img
+                src="/illustrations/happy.svg"
+                width="300"
+                className="completion-illustration"
+                initial={{ opacity: 0, filter: "blur(10px)", scale: 1.1 }}
+                animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              />
+              <motion.h1
+                key="welcome-message"
+                style={{
+                  fontSize: "40px",
+                  alignSelf: "center",
+                  textAlign: "center",
+                  lineHeight: "150%",
+                  position: "relative",
+                  top: "20vh",
+                  margin: 0,
+                  paddingLeft: "5vw",
+                  paddingRight: "5vw",
+                  display: "block",
+                  zIndex: 1,
+                }}
+                initial={{ opacity: 0, filter: "blur(10px)", y: "10px" }}
+                animate={{ opacity: 1, filter: "blur(0px)", y: "0px" }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                exit={{
+                  opacity: 0,
+                  filter: "blur(10px)",
+                  scale: 0.9,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                We're so hyped you're here!
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, filter: "blur(10px)", y: "10px" }}
+                animate={{ opacity: 1, filter: "blur(0px)", y: "0px" }}
+                transition={{ duration: 0.5, ease: "easeInOut", delay: 0.7 }}
+                style={{
+                  alignSelf: "center",
+                  paddingLeft: "5vw",
+                  paddingRight: "5vw",
+                  fontFamily: "Albert Sans, sans-serif",
+                  fontStyle: "italic",
+                  color: "#959595",
+                  fontWeight: "400",
+                  position: "relative",
+                  top: "18.5vh",
+                  fontSize: "17px",
+                }}
+                exit={{
+                  opacity: 0,
+                  filter: "blur(10px)",
+                  scale: 0.9,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                The fun starts now.
+              </motion.p>
+              <motion.button
+                style={{
+                  alignSelf: "center",
+                  backgroundColor: "#2CFF2F",
+                  color: "black",
+                  position: "absolute",
+                  bottom: "12vh",
+                  width: "50vw",
+                  borderRadius: "25px",
+                  height: "60px",
+                  fontSize: "20px",
+                  outline: "none",
+                  border: "none",
+                  WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
+                  transition: "all 0.1s ease",
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = "rgb(44, 255, 48)";
+                  e.target.style.transform = "scale(0.95)";
+                  e.target.style.boxShadow =
+                    "0px 0px 30px 1px rgba(0, 255, 34, 0.54)";
+                  e.target.style.transition = "all 0.1s ease";
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = "#2CFF2F";
+                  e.target.style.transform = "scale(1)";
+                  e.target.style.boxShadow = "none";
+                  e.target.style.transition = "all 0.8s ease";
+                }}
+                initial={{
+                  opacity: 0,
+                  filter: "blur(10px)",
+                  scale: 0.9,
+                }}
+                animate={{
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  scale: 1,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: 1.5,
+                }}
+                exit={{
+                  opacity: 0,
+                  filter: "blur(10px)",
+                  scale: 0.9,
+                  transition: { duration: 0.2 },
+                }}
+                onClick={() => {
+                  navigator.vibrate(50);
+                  window.location.reload();
+                }}
+              >
+                Go to Home
+              </motion.button>
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
+    </AnimatePresence>,
   ];
 
   async function handleSubmit() {
+    setBuildingProfile(true);
+    buildingPattern();
+
+    // Uncomment when ready to use database functionality
     const { error } = await supabase.from("users").insert([
       {
         name: userName,
@@ -625,12 +819,14 @@ function Onboarding() {
       console.error("Error inserting data:", error);
     } else {
       console.log("Data inserted successfully");
-      fetchUserData(); // Fetch user data after insertion
-      fetchHostelData(); // Fetch hostel data after insertion
-      // Add a delay before navigating to the next screen
+      fetchUserData();
+      fetchHostelData();
       setTimeout(() => {
-        setCurrentScreen(3); // Navigate to the next screen after successful insertion
-      }, 2000); // 2-second delay
+        setBuildingProfile(false);
+      }, 5000);
+      setTimeout(() => {
+        setBuildingText("Your profile is ready!");
+      }, 2000);
     }
   }
 

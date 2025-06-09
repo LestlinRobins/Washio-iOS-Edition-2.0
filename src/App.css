@@ -93,7 +93,13 @@ html {
   align-self: flex-start;
   margin-left: 0px;
 }
-
+.onboarding-room-collection-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-self: center;
+  padding: 0px;
+}
 .name-illustration {
   width: 115vw;
   position: fixed;
@@ -130,10 +136,35 @@ html {
   top: 15vh;
   left: 0vw;
 }
+.onboarding-room-collection-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 3vh;
+  padding-right: 3vh;
+  font-family: "Laviossa", sans-serif;
+}
 .room-illustration {
   width: 90vw;
   position: fixed;
   top: 17vh;
+  align-self: center;
+}
+
+.completion-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-family: "Laviossa", sans-serif;
+}
+.completion-illustration {
+  width: 90vw;
+  position: fixed;
+  top: 10vh;
   align-self: center;
 }
 .topBarHomePage {

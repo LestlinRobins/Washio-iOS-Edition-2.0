@@ -117,6 +117,28 @@ function WelcomeScreen({ setStartSelected }) {
       >
         Get started!
       </motion.button>
+      <motion.p
+        initial={{
+          opacity: 0,
+          filter: "blur(10px)",
+          y: "10px",
+        }}
+        animate={{ opacity: 1, filter: "blur(0px)", y: "0px" }}
+        transition={{ duration: 0.6, delay: 3.5 }}
+        style={{
+          fontSize: "10px",
+          fontFamily: "Albert Sans",
+          position: "fixed",
+          bottom: "10px",
+          color: "#959595",
+          fontWeight: "400",
+          fontStyle: "italic",
+          padding: "0px",
+          marginBottom: "0px",
+        }}
+      >
+        Made with 💚 by Void® Inc.
+      </motion.p>
     </div>
   );
 }
