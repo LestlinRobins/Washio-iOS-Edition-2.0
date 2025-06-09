@@ -24,7 +24,6 @@ function Onboarding() {
   const buildingPattern = () => {
     if (navigator.vibrate) {
       const pattern = [
-        // Phase 1: Gentle anticipation (0-1s)
         25,
         250,
         30,
@@ -79,33 +78,9 @@ function Onboarding() {
         80,
         10,
 
-        // Phase 4: Rapid-fire finale (3-4s)
-        85,
-        8,
-        80,
-        6,
-        85,
-        5,
-        80,
-        4,
-        85,
-        3,
-        80,
-        2,
-        85,
-        2,
-        80,
-        1,
-        85,
-        1,
-        80,
-        1,
-
-        // THE MOMENT - Profile complete!
+        // THE MOMENT - Profile complete! (at 3s mark)
         300,
-        120, // Single powerful completion pulse
-
-        // Quick celebration taps
+        120, // Single powerful c
       ];
       navigator.vibrate(pattern);
     }
