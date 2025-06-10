@@ -34,6 +34,7 @@ function HomePage({ currentHostelData, currentUserData }) {
         <div className="topBarHomePage">
           <div className="topBarLeftHomePage">
             <motion.p
+              viewport={{ once: true }}
               initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               transition={{
@@ -47,6 +48,7 @@ function HomePage({ currentHostelData, currentUserData }) {
               Wash.io
             </motion.p>
             <motion.p
+              viewport={{ once: true }}
               initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               transition={{
@@ -70,6 +72,7 @@ function HomePage({ currentHostelData, currentUserData }) {
           </div>
           <div className="userDetailsHomePage">
             <motion.p
+              viewport={{ once: true }}
               initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               transition={{
@@ -84,6 +87,7 @@ function HomePage({ currentHostelData, currentUserData }) {
             </motion.p>
             <Link className="userPhotoHomePage" to="/SettingsPage">
               <motion.img
+                viewport={{ once: true }}
                 initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }}
                 animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
                 transition={{
@@ -123,6 +127,8 @@ function HomePage({ currentHostelData, currentUserData }) {
               position: "relative",
               top: "-5vh",
               fontFamily: "Laviossa, sans-serif",
+              paddingLeft: "3rem",
+              paddingRight: "3rem",
             }}
             initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }}
             animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
