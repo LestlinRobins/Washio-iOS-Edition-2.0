@@ -191,10 +191,14 @@ select:focus {
   outline: 1px solid #82b086;
 }
 .appNameHomePage {
-  align-self: center;
-  margin-left: 5vw;
+  align-self: flex-start;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 1.8rem;
+  font-family: "Laviossa", sans-serif;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: white;
 }
 
 .userDetailsHomePage {
@@ -285,17 +289,24 @@ select:focus {
   display: flex;
   justify-content: center; /* Center the items within each row */
   width: 100%;
-  gap: 1vh;
+  gap: 2vh;
 }
 
 .singleFloorBox {
-  height: 10vh;
-  width: 20vw; /* Ensure the items have a consistent width */
-  border: 1px solid white;
+  height: 6rem;
+  width: 6rem; /* Ensure the items have a consistent width */
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+  font-family: "Laviossa", sans-serif;
+  font-size: 2em;
+  color: rgb(0, 0, 0);
+  background-color: #2cff2f;
+  outline: none;
+  border: none;
+  webkittaphighlightcolor: rgba(0, 0, 0, 0);
+  transition: all 0.1s ease;
 }
 
 /* Booking Component Styles */
@@ -396,9 +407,11 @@ select:focus {
 
 .topBarLeftHomePage {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  margin-left: 5vw;
+  margin-left: 7vw;
+  gap: 0vh;
+  margin-top: 3vh;
 }
 
 .backButtonBooking {
