@@ -12,6 +12,10 @@ import { motion } from "motion/react";
 function HomePage({ currentHostelData, currentUserData }) {
   const [selectedFloor, setSelectedFloor] = useState(null);
   const { email, photoURL } = auth.currentUser;
+  const [hasAnimatedOnce, setHasAnimatedOnce] = useState(() => {
+    return sessionStorage.getItem("bottomBarAnimated") === "true";
+  });
+  const [animationKey, setAnimationKey] = useState(0);
 
   return (
     <div>
@@ -193,24 +197,36 @@ function HomePage({ currentHostelData, currentUserData }) {
       <div className="bottomBarHomePage">
         <Link to="/">
           <motion.div
+            key={animationKey}
             initial={{
-              right: "-300px",
-              position: "relative",
+              x: hasAnimatedOnce ? 0 : 300,
+              opacity: hasAnimatedOnce ? 1 : 0,
             }}
             animate={{
-              right: "0px",
-              position: "relative",
+              x: 0,
+              opacity: 1,
+            }}
+            onAnimationComplete={() => {
+              if (!hasAnimatedOnce) {
+                setHasAnimatedOnce(true);
+                sessionStorage.setItem("bottomBarAnimated", "true");
+              }
+            }}
+            whileTap={{
+              scale: 0.9,
+              transition: { duration: 0.1, ease: "easeInOut" },
             }}
             transition={{
-              duration: 0.3,
+              duration: hasAnimatedOnce ? 0 : 0.3,
               type: "spring",
               stiffness: 90,
               damping: 15,
             }}
-            whileTap={{ scale: 0.9 }}
             onClick={() => {
               navigator.vibrate(50);
               setSelectedFloor(null);
+              setAnimationKey((prev) => prev + 1);
+              sessionStorage.removeItem("bottomBarAnimated");
             }}
             style={{
               backgroundColor: "#2CFF2F",
@@ -230,10 +246,17 @@ function HomePage({ currentHostelData, currentUserData }) {
         </Link>
         <Link to="/SettingsPage">
           <motion.div
-            whileTap={{ scale: 0.9 }}
+            whileTap={{
+              scale: 0.9,
+              backgroundColor: "rgb(44, 255, 48)",
+              boxShadow: "0px 0px 30px 1px rgba(0, 255, 34, 0.54)",
+            }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
             onClick={() => {
               navigator.vibrate(50);
               setSelectedFloor(null);
+              setAnimationKey((prev) => prev + 1);
+              sessionStorage.removeItem("bottomBarAnimated");
             }}
             style={{
               color: "white",
