@@ -205,6 +205,7 @@ select:focus {
   display: flex;
   flex-direction: row;
   margin-right: 5vw;
+  margin-top: 2vh;
 }
 .userPlanHomePage {
   border: 1px solid white;
@@ -247,21 +248,32 @@ select:focus {
 }
 .bottomBarHomePage {
   position: fixed;
-  bottom: 0px;
+  bottom: 0.8rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  align-items: center;
   width: 90%;
-  padding: 2vh;
-  align-self: center;
+  left: 50%;
+  transform: translateX(-50%);
   border: 1px solid rgb(1, 136, 25);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.599);
+  border-radius: 20px;
+  background-color: #005b07;
+  color: white;
+  height: 6.5vh;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-.bottomBarBookingPage {
+
+.bottomBarHomePage:active {
+  filter: blur(2px);
   position: fixed;
-  bottom: 0px;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+/* .bottomBarBookingPage {
+  position: fixed;
+  bottom: 0.8rem;
   left: 0px;
   display: flex;
   flex-direction: row;
@@ -273,7 +285,7 @@ select:focus {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: rgba(0, 0, 0, 0.599);
-}
+} */
 
 .floorBoxContainer {
   display: flex;

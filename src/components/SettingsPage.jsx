@@ -4,7 +4,7 @@ import SignOut from "./SignOut";
 import { supabase } from "../supabase";
 import { Link, useNavigate } from "react-router-dom";
 import { Home, Settings, ArrowLeft } from "react-feather";
-
+import { motion } from "motion/react";
 function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
   const navigate = useNavigate();
@@ -36,34 +36,51 @@ function SettingsPage({ currentUserData }) {
             onClick={() => {
               navigator.vibrate(50);
             }}
-            className="bottomBarIconHomePage"
+            style={{
+              color: "white",
+              height: "3em",
+              width: "11.5em",
+              marginLeft: "0.4em",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Home />
+            <Home size={26} />
           </div>
         </Link>
         <Link to="/SettingsPage">
-          <div
+          <motion.div
+            initial={{
+              left: "-300px",
+              position: "relative",
+            }}
+            animate={{ left: "0px", position: "relative" }}
+            transition={{
+              duration: 0.3,
+              type: "spring",
+              stiffness: 90,
+              damping: 15,
+            }}
             onClick={() => {
               navigator.vibrate(50);
             }}
-            className="bottomBarIconHomePage"
+            style={{
+              backgroundColor: "#2CFF2F",
+              color: "black",
+              height: "3em",
+              width: "11.5em",
+              marginLeft: "0.4em",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0px 0px 30px 1px rgba(50, 50, 50, 0.54)",
+            }}
           >
-            <Settings />
-
-            <p
-              style={{
-                padding: "0px",
-                margin: "0px",
-                fontWeight: "800",
-                marginTop: "-10px",
-                alignSelf: "center",
-                fontSize: "20px",
-                marginBottom: "-10px",
-              }}
-            >
-              —
-            </p>
-          </div>
+            <Settings size={26} />
+          </motion.div>
         </Link>
       </div>
     </div>

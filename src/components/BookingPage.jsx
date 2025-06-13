@@ -214,28 +214,25 @@ const BookingPage = ({ hostelData, userData }) => {
           </div>
         </div>
       )}
-      <div className="bottomBarBookingPage">
+      <div className="bottomBarHomePage">
         <Link to="/">
           <div
             onClick={() => {
               navigator.vibrate(50);
             }}
-            className="bottomBarIconHomePage"
+            style={{
+              backgroundColor: "#2CFF2F",
+              color: "black",
+              height: "3em",
+              width: "11.5em",
+              marginLeft: "0.4em",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Home />
-            <p
-              style={{
-                padding: "0px",
-                margin: "0px",
-                fontWeight: "800",
-                marginTop: "-10px",
-                alignSelf: "center",
-                fontSize: "20px",
-                marginBottom: "-10px",
-              }}
-            >
-              —
-            </p>
           </div>
         </Link>
         <Link to="/SettingsPage">
@@ -243,7 +240,16 @@ const BookingPage = ({ hostelData, userData }) => {
             onClick={() => {
               navigator.vibrate(50);
             }}
-            className="bottomBarIconHomePage"
+            style={{
+              color: "white",
+              height: "3em",
+              width: "11.5em",
+              marginLeft: "0.4em",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Settings />
           </div>

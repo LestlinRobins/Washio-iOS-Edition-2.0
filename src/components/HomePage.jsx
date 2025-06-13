@@ -125,7 +125,7 @@ function HomePage({ currentHostelData, currentUserData }) {
               textAlign: "center",
               lineHeight: "150%",
               position: "relative",
-              top: "-5vh",
+              bottom: "4vh",
               fontFamily: "Laviossa, sans-serif",
               paddingLeft: "3rem",
               paddingRight: "3rem",
@@ -192,40 +192,62 @@ function HomePage({ currentHostelData, currentUserData }) {
 
       <div className="bottomBarHomePage">
         <Link to="/">
-          <div
+          <motion.div
+            initial={{
+              right: "-300px",
+              position: "relative",
+            }}
+            animate={{
+              right: "0px",
+              position: "relative",
+            }}
+            transition={{
+              duration: 0.3,
+              type: "spring",
+              stiffness: 90,
+              damping: 15,
+            }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => {
               navigator.vibrate(50);
               setSelectedFloor(null);
             }}
-            className="bottomBarIconHomePage"
+            style={{
+              backgroundColor: "#2CFF2F",
+              color: "black",
+              height: "3em",
+              width: "11.5em",
+              marginLeft: "0.4em",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0px 0px 30px 1px rgba(50, 50, 50, 0.54)",
+            }}
           >
-            <Home />
-
-            <p
-              style={{
-                padding: "0px",
-                margin: "0px",
-                fontWeight: "800",
-                marginTop: "-10px",
-                alignSelf: "center",
-                fontSize: "20px",
-                marginBottom: "-10px",
-              }}
-            >
-              —
-            </p>
-          </div>
+            <Home size={26} />
+          </motion.div>
         </Link>
         <Link to="/SettingsPage">
-          <div
+          <motion.div
+            whileTap={{ scale: 0.9 }}
             onClick={() => {
               navigator.vibrate(50);
               setSelectedFloor(null);
             }}
-            className="bottomBarIconHomePage"
+            style={{
+              color: "white",
+              height: "3em",
+              width: "11.5em",
+              marginLeft: "0.4em",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Settings />
-          </div>
+            <Settings size={26} />
+          </motion.div>
         </Link>
       </div>
     </div>
