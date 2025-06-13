@@ -255,12 +255,13 @@ select:focus {
   width: 90%;
   left: 50%;
   transform: translateX(-50%);
-  border: 1px solid rgb(1, 136, 25);
   border-radius: 20px;
   background-color: #005b07;
   color: white;
   height: 6.5vh;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
 }
 
 .bottomBarHomePage:active {

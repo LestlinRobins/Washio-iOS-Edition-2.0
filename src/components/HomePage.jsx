@@ -195,7 +195,7 @@ function HomePage({ currentHostelData, currentUserData }) {
       )}
 
       <div className="bottomBarHomePage">
-        <Link to="/">
+        <Link to="/" style={{ width: "100%" }}>
           <motion.div
             key={animationKey}
             initial={{
@@ -232,7 +232,7 @@ function HomePage({ currentHostelData, currentUserData }) {
               backgroundColor: "#2CFF2F",
               color: "black",
               height: "3em",
-              width: "11.5em",
+              width: "100%",
               marginLeft: "0.4em",
               borderRadius: "15px",
               display: "flex",

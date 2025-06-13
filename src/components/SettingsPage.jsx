@@ -50,7 +50,10 @@ function SettingsPage({ currentUserData }) {
             <Home size={26} />
           </div>
         </Link>
-        <Link to="/SettingsPage">
+        <Link
+          to="/SettingsPage"
+          style={{ width: "50% ", position: "fixed", right: "0.4em" }}
+        >
           <motion.div
             initial={{
               left: "-300px",
@@ -70,8 +73,7 @@ function SettingsPage({ currentUserData }) {
               backgroundColor: "#2CFF2F",
               color: "black",
               height: "3em",
-              width: "11.5em",
-              marginLeft: "0.4em",
+              width: "100%",
               borderRadius: "15px",
               display: "flex",
               alignItems: "center",
