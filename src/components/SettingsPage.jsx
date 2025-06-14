@@ -252,7 +252,7 @@ function SettingsPage({ currentUserData }) {
             height: "100%",
             gap: "-0.5rem",
             position: "absolute",
-            bottom: "-1rem",
+            bottom: "-1vh",
           }}
         >
           <motion.p
