@@ -31,40 +31,49 @@ function SettingsPage({ currentUserData }) {
       <p>{currentUserData.roomNo}</p>
       <SignOut />
       <div className="bottomBarHomePage">
-        <Link to="/">
-          <div
+        <Link to="/" style={{ flex: 1 }}>
+          <motion.div
+            whileTap={{
+              scale: 0.95,
+              transition: { duration: 0.1, ease: "easeInOut" },
+            }}
             onClick={() => {
               navigator.vibrate(50);
             }}
             style={{
               color: "white",
               height: "3em",
-              width: "11.5em",
-              marginLeft: "0.4em",
               borderRadius: "15px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              margin: "0 0.2em",
+              minWidth: 0, // Prevents flex item from overflowing
             }}
           >
             <Home size={26} />
-          </div>
+          </motion.div>
         </Link>
-        <Link
-          to="/SettingsPage"
-          style={{ width: "50% ", position: "fixed", right: "0.4em" }}
-        >
+
+        <Link to="/SettingsPage" style={{ flex: 1 }}>
           <motion.div
             initial={{
-              left: "-300px",
-              position: "relative",
+              x: -300,
+              opacity: 0,
             }}
-            animate={{ left: "0px", position: "relative" }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
             transition={{
               duration: 0.3,
               type: "spring",
               stiffness: 90,
               damping: 15,
+            }}
+            whileTap={{
+              scale: 0.95,
+              transition: { duration: 0.1, ease: "easeInOut" },
             }}
             onClick={() => {
               navigator.vibrate(50);
@@ -73,12 +82,13 @@ function SettingsPage({ currentUserData }) {
               backgroundColor: "#2CFF2F",
               color: "black",
               height: "3em",
-              width: "100%",
               borderRadius: "15px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               boxShadow: "0px 0px 30px 1px rgba(50, 50, 50, 0.54)",
+              margin: "0 0.2em",
+              minWidth: 0, // Prevents flex item from overflowing
             }}
           >
             <Settings size={26} />
