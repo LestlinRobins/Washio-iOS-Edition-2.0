@@ -6,8 +6,6 @@
   color: white;
   width: 100vw;
   font-family: "Albert Sans", sans-serif;
-  overflow-x: hidden; /* Prevent horizontal scrollbars */
-  max-width: 100vw;
 }
 body,
 html {
@@ -15,11 +13,9 @@ html {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  padding: 0; /* Add this */
-  overflow-x: hidden; /* Prevent horizontal scrollbars */
-  overflow-y: hidden; /* Prevent vertical scrollbars */
-  max-width: 100vw;
-  max-height: 100vh;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .appBGBooking {
   background: linear-gradient(to top right, #045116 1%, black 35%);
