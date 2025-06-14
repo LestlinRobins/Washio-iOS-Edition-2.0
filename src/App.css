@@ -103,6 +103,14 @@ html {
   align-self: center;
   padding: 0px;
 }
+.setting-room-collection-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-self: center;
+  padding: 0px;
+  margin: 0px;
+}
 .name-illustration {
   width: 115vw;
   position: fixed;
@@ -180,6 +188,17 @@ html {
   width: 100%;
   height: 10vh;
 }
+
+.topBarSettingsPage {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  position: fixed;
+  top: 0vh;
+  left: 0.4rem;
+  width: 100%;
+  height: 8vh;
+}
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -203,7 +222,16 @@ select:focus {
   margin-bottom: 0px;
   color: white;
 }
-
+.appNameSettingsPage {
+  align-self: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  font-family: "Laviossa", sans-serif;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: white;
+}
 .userDetailsHomePage {
   display: flex;
   flex-direction: row;
@@ -429,7 +457,14 @@ select:focus {
   gap: 0vh;
   margin-top: 3vh;
 }
-
+.topBarLeftSettingsPage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0vh;
+  margin-top: 2vh;
+}
 .backButtonBooking {
   position: fixed;
   top: 5vh;
@@ -449,4 +484,132 @@ select:focus {
   height: 100vh;
   border-radius: 12px;
   box-shadow: 0px -30px 60px -10px rgba(207, 206, 206, 0.5);
+}
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: relative;
+  top: -9vh;
+}
+
+.profile-picture-container {
+  margin-bottom: 3rem;
+}
+
+.profile-picture {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  background-color: #2cff2f;
+  object-fit: cover;
+}
+
+.profile-details {
+  width: 100%;
+  /* max-width: 300px; */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.profile-label {
+  font-family: "Albert Sans", sans-serif;
+  font-size: 14px;
+  color: #959595;
+  font-style: italic;
+  margin: 0;
+  text-align: left;
+  margin-left: 0.3rem;
+}
+
+.profile-value {
+  border-radius: 20px;
+  border: none;
+  position: relative;
+  height: 2.8rem;
+  background-color: #004901;
+  font-family: "Albert Sans", sans-serif;
+  font-size: 18px;
+  padding: 0.5rem 1rem;
+}
+.signOutButton {
+  width: 25vw;
+  height: 2.8rem;
+  padding: 0px;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+.room-number-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 1rem 1.5rem !important;
+}
+
+.room-prefix {
+  color: #959595;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.room-number {
+  color: white;
+  font-weight: 500;
+}
+
+/* Override the default profile-value styling for room number */
+.profile-value.room-number-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+.settingsPatternCircle1 {
+  border-radius: 100%;
+  background-color: #005101b7;
+  opacity: 0.5;
+  height: 45vw;
+  width: 45vw;
+  position: fixed;
+  bottom: -10vw;
+  left: -18vw;
+}
+.settingsPatternCircle2 {
+  border-radius: 100%;
+  background-color: #003301;
+  opacity: 0.5;
+  height: 45vw;
+  width: 45vw;
+  position: fixed;
+  bottom: -5vw;
+  left: 10vw;
+}
+.settingsPatternCircle3 {
+  border-radius: 100%;
+  background-color: #014602;
+  opacity: 0.5;
+  height: 45vw;
+  width: 45vw;
+  position: fixed;
+  bottom: -7vw;
+  left: 45vw;
+  z-index: -1;
+}
+.settingsPatternCircle4 {
+  border-radius: 100%;
+  background-color: #004501;
+  opacity: 0.67;
+  height: 50vw;
+  width: 50vw;
+  position: fixed;
+  bottom: 1vw;
+  right: -20vw;
 }
