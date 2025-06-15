@@ -16,10 +16,8 @@ function SettingsPage({ currentUserData }) {
   const buildingPattern = () => {
     if (navigator.vibrate) {
       const pattern = [
-        25,
-        250,
-        300,
-        120, // Single powerful c
+        5, 25, 5, 25, 5, 25, 5, 25, 5, 25, 5, 25, 5, 25, 5, 25, 5, 25, 5, 25, 5,
+        25, 5, 25, 5, 25, 5, 25, 5, 25, 5, 25,
       ];
       navigator.vibrate(pattern);
     }
