@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Home, Settings, ArrowLeft } from "react-feather";
 import { motion } from "motion/react";
 import ConfettiExplosion from "react-confetti-explosion";
+
 function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
   const navigate = useNavigate();
