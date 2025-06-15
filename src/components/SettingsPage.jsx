@@ -5,6 +5,7 @@ import { supabase } from "../supabase";
 import { Link, useNavigate } from "react-router-dom";
 import { Home, Settings, ArrowLeft } from "react-feather";
 import { motion } from "motion/react";
+import ConfettiExplosion from "react-confetti-explosion";
 function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ function SettingsPage({ currentUserData }) {
       tapCount.current = 0;
     }, 1500);
 
-    if (tapCount.current >= 7) {
+    if (tapCount.current >= 6) {
       setEasterEgg(true);
       tapCount.current = 0; // Reset after triggering
       console.log("Easter egg activated!");
@@ -64,6 +65,37 @@ function SettingsPage({ currentUserData }) {
   };
   return (
     <div>
+      {easterEgg && (
+        <div
+          style={{
+            position: "fixed",
+            left: "20%", // Position horizontally
+            bottom: "20%", // Position vertically
+            zIndex: 9999,
+            pointerEvents: "none",
+          }}
+          className="easterEggContainer"
+        >
+          <ConfettiExplosion
+            duration={5000}
+            particleCount={500}
+            onComplete={() => {
+              setEasterEgg(false);
+            }}
+            className="easterEggConfetti"
+            force={0.9}
+            particleSize={20}
+            height={"250vh"}
+            colors={["#24fc03", "#6cfc56", "#169c02", "#31c91a"]}
+            origin={{ x: 0.2, y: 0.8 }}
+            style={{
+              position: "fixed",
+              left: "30%", // Position horizontally
+              top: "80%", // Pos
+            }}
+          />
+        </div>
+      )}
       <div className="topBarSettingsPage">
         <div className="topBarLeftSettingsPage">
           <motion.button
