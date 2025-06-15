@@ -17,14 +17,6 @@ function SettingsPage({ currentUserData }) {
       const pattern = [
         25,
         250,
-        30,
-        220,
-        35,
-        200,
-        40,
-        180,
-
-        // THE MOMENT - Profile complete! (at 2s mark)
         300,
         120, // Single powerful c
       ];
