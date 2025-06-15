@@ -54,13 +54,13 @@ function SettingsPage({ currentUserData }) {
         >
           <ConfettiExplosion
             duration={5000}
-            particleCount={500}
+            particleCount={300}
             onComplete={() => {
               setEasterEgg(false);
             }}
             className="easterEggConfetti"
             force={0.9}
-            particleSize={20}
+            particleSize={25}
             height={"250vh"}
             colors={["#24fc03", "#6cfc56", "#169c02", "#31c91a"]}
             origin={{ x: 0.2, y: 0.8 }}
