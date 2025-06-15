@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Home, Settings, ArrowLeft } from "react-feather";
 import { motion } from "motion/react";
 import ConfettiExplosion from "react-confetti-explosion";
+import { LightSpeed } from "react-swift-reveal";
 
 function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
@@ -33,7 +34,7 @@ function SettingsPage({ currentUserData }) {
       tapCount.current = 0;
     }, 1500);
 
-    if (tapCount.current >= 6) {
+    if (tapCount.current >= 7) {
       setEasterEgg(true);
       tapCount.current = 0; // Reset after triggering
       console.log("Easter egg activated!");
