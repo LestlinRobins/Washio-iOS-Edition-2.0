@@ -14,37 +14,29 @@ function SettingsPage({ currentUserData }) {
   const [easterEgg, setEasterEgg] = useState(false);
   const tapCount = useRef(0);
   const tapTimeout = useRef(null);
-  const [showConfetti, setShowConfetti] = useState(true);
-  useEffect(() => {
-    if (email === import.meta.env.VITE_SPECIAL_USER) {
-      const timer = setTimeout(() => {
-        setShowConfetti(false);
-      }, 7000); // 7 seconds
+  const [showConfetti, setShowConfetti] = useState(false);
 
-      return () => clearTimeout(timer);
-    }
-  }, [email]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowConfetti(false);
+    }, 7000); // 7 seconds
+
+    return () => clearTimeout(timer);
+  });
 
   const drawShape = (ctx, color = "rgb(205, 62, 117)") => {
-    const size = 10; // Small size
-
+    const size = 10;
     ctx.beginPath();
-
-    // Bottom point of heart
     ctx.moveTo(0, size);
-
-    // Left half
     ctx.quadraticCurveTo(-size, 0, -size, -size / 2);
     ctx.quadraticCurveTo(-size, -size, 0, -size / 2);
-
-    // Right half
     ctx.quadraticCurveTo(size, -size, size, -size / 2);
     ctx.quadraticCurveTo(size, 0, 0, size);
-
     ctx.closePath();
     ctx.fillStyle = color;
     ctx.fill();
   };
+
   const buildingPattern = () => {
     if (navigator.vibrate) {
       const pattern = [
@@ -55,16 +47,14 @@ function SettingsPage({ currentUserData }) {
       navigator.vibrate(pattern);
     }
   };
+
   const handleTap = () => {
     navigator.vibrate(50);
     tapCount.current += 1;
-
-    // Reset tap count after 1.5s of inactivity
     if (tapTimeout.current) clearTimeout(tapTimeout.current);
     tapTimeout.current = setTimeout(() => {
       tapCount.current = 0;
     }, 1500);
-
     if (tapCount.current >= 7) {
       setEasterEgg(true);
       tapCount.current = 0; // Reset after triggering
@@ -72,6 +62,22 @@ function SettingsPage({ currentUserData }) {
       buildingPattern();
     }
   };
+
+  const handleTapSpecialUser = () => {
+    navigator.vibrate(50);
+    tapCount.current += 1;
+    if (tapTimeout.current) clearTimeout(tapTimeout.current);
+    tapTimeout.current = setTimeout(() => {
+      tapCount.current = 0;
+    }, 1500);
+    if (tapCount.current >= 7) {
+      setShowConfetti(true);
+      tapCount.current = 0; // Reset after triggering
+      console.log("Easter egg activated!");
+      buildingPattern();
+    }
+  };
+
   return (
     <div>
       {easterEgg && (
@@ -164,6 +170,11 @@ function SettingsPage({ currentUserData }) {
             type: "spring",
             stiffness: 100,
           }}
+          onClick={
+            email === import.meta.env.VITE_SPECIAL_USER
+              ? handleTapSpecialUser
+              : undefined
+          }
         >
           <img src={photoURL} alt="Profile" className="profile-picture" />
         </motion.div>
