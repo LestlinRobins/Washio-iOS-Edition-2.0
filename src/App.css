@@ -613,3 +613,10 @@ select:focus {
   bottom: 1vw;
   right: -20vw;
 }
+.specialUserMessage {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: 9999;
+  pointer-events: none;
+}

@@ -4,9 +4,9 @@ import SignOut from "./SignOut";
 import { supabase } from "../supabase";
 import { Link, useNavigate } from "react-router-dom";
 import { Home, Settings, ArrowLeft } from "react-feather";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import ConfettiExplosion from "react-confetti-explosion";
-import { LightSpeed } from "react-swift-reveal";
+import Confetti from "react-confetti";
 
 function SettingsPage({ currentUserData }) {
   const { email, photoURL } = auth.currentUser;
@@ -14,6 +14,37 @@ function SettingsPage({ currentUserData }) {
   const [easterEgg, setEasterEgg] = useState(false);
   const tapCount = useRef(0);
   const tapTimeout = useRef(null);
+  const [showConfetti, setShowConfetti] = useState(true);
+  useEffect(() => {
+    if (email === import.meta.env.VITE_SPECIAL_USER) {
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+      }, 7000); // 7 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [email]);
+
+  const drawShape = (ctx, color = "rgb(205, 62, 117)") => {
+    const size = 10; // Small size
+
+    ctx.beginPath();
+
+    // Bottom point of heart
+    ctx.moveTo(0, size);
+
+    // Left half
+    ctx.quadraticCurveTo(-size, 0, -size, -size / 2);
+    ctx.quadraticCurveTo(-size, -size, 0, -size / 2);
+
+    // Right half
+    ctx.quadraticCurveTo(size, -size, size, -size / 2);
+    ctx.quadraticCurveTo(size, 0, 0, size);
+
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
   const buildingPattern = () => {
     if (navigator.vibrate) {
       const pattern = [
@@ -254,6 +285,23 @@ function SettingsPage({ currentUserData }) {
           </motion.div>
         </div>
       </div>{" "}
+      {email === import.meta.env.VITE_SPECIAL_USER && (
+        <AnimatePresence>
+          {showConfetti && (
+            <motion.div
+              className="specialUserMessage"
+              initial={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{
+                opacity: 0,
+                filter: "blur(10px)",
+                transition: { duration: 1.5, ease: "easeOut" },
+              }}
+            >
+              <Confetti drawShape={drawShape} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
       <div
         style={{
           position: "fixed",
