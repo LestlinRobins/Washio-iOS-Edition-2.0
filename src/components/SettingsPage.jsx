@@ -24,22 +24,6 @@ function SettingsPage({ currentUserData }) {
         40,
         180,
 
-        // Phase 2: Building momentum (1-2s)
-        45,
-        160,
-        50,
-        140,
-        55,
-        120,
-        60,
-        100,
-        65,
-        90,
-        70,
-        80,
-        75,
-        70,
-
         // THE MOMENT - Profile complete! (at 2s mark)
         300,
         120, // Single powerful c
